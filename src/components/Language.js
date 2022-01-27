@@ -13,7 +13,7 @@ const Language = () => {
     <span
       onClick={() => changeLanguage(val)}
       className={`${
-        i18n.language === val ? "font-bold" : "font-normal"
+        i18n.language === val ? "font-bold text-orange-600" : "font-normal"
       } hover:opacity-70 transition-opacity cursor-pointer`}
     >
       {val.toUpperCase()}

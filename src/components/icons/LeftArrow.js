@@ -1,9 +1,11 @@
-const LeftArrow = ({ onClick = () => {} }) => (
+const LeftArrow = ({ onClick = () => {}, darkMode = false }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 100 100"
     xmlSpace="preserve"
-    className="w-8 fill-bgDark hover:opacity-70 transition-opacity cursor-pointer"
+    className={`w-8 ${
+      darkMode ? "fill-bgLight" : "fill-bgDark"
+    } hover:opacity-70 transition-opacity cursor-pointer`}
     onClick={onClick}
   >
     <path

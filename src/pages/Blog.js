@@ -11,6 +11,7 @@ const Blog = () => {
   const { state, actions } = useAtoms();
 
   const id = location.search.split("?id=").pop(); //Extracting id from the query
+  const darkMode = state.theme === "dark";
 
   const getArticle = useCallback(async () => {
     try {
@@ -33,9 +34,9 @@ const Blog = () => {
   }, [getArticle]);
 
   return (
-    <div className="flex w-full ">
+    <div className={`flex w-full`}>
       {isLoading ? (
-        <ArticleDetailSkeleton />
+        <ArticleDetailSkeleton darkMode={darkMode} />
       ) : (
         <ArticleDetailCard item={state.article} />
       )}

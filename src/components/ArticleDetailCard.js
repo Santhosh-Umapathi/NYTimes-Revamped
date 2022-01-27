@@ -9,16 +9,20 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { readTime, renderHTML } from "../helpers";
 //Icon
 import { LeftArrow } from "./icons";
+import { useAtoms } from "../recoil/hooks";
 
 const ArticleDetailCard = ({ item = {} }) => {
   const { t } = useTranslation();
+  const { state } = useAtoms();
+
   const [imageLoaded, setImageLoaded] = useState(false);
 
   const navigate = useNavigate();
+  const darkMode = state.theme === "dark";
 
   return (
     <div className="flex flex-col px-5 space-y-5 w-full relative">
-      <LeftArrow onClick={() => navigate(-1)} />
+      <LeftArrow onClick={() => navigate(-1)} darkMode={darkMode} />
       {item.multimedia[4]?.url && (
         <img
           src={"https://www.nytimes.com/" + item.multimedia[9]?.url}
@@ -27,9 +31,17 @@ const ArticleDetailCard = ({ item = {} }) => {
         />
       )}
       {!imageLoaded && (
-        <Skeleton containerClassName="flex w-full h-[300px] rounded-md absolute top-8" />
+        <Skeleton
+          containerClassName="flex w-full h-[300px] rounded-md absolute top-8"
+          baseColor={darkMode && "#24292F"}
+          highlightColor={darkMode && "#0D1116"}
+        />
       )}
-      <div className="flex flex-col space-y-2 w-full">
+      <div
+        className={`flex flex-col space-y-2 w-full ${
+          darkMode ? "text-bgLight" : "text-grey"
+        }`}
+      >
         <span className="text-4xl font-bold">{item.headline.main}</span>
         <div className="flex space-x-40 font-thin">
           <span>

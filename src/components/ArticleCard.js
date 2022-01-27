@@ -6,15 +6,23 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 //Helpers
 import { readTime, renderHTML } from "../helpers";
+import { useAtoms } from "../recoil/hooks";
 
 const ArticleCard = ({ item = {} }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { state } = useAtoms();
   const [imageLoaded, setImageLoaded] = useState(false);
+
+  const darkMode = state.theme === "dark";
 
   return (
     <div
-      className="flex border-b rounded-md p-5 space-x-5 hover:opacity-60 transition-opacity cursor-pointer relative"
+      className={`flex border-b p-5 space-x-5 hover:opacity-60 transition-opacity cursor-pointer relative ${
+        darkMode
+          ? "bg-primary border-bgDark text-bgLight"
+          : "bg-white text-grey"
+      }`}
       onClick={() => {
         navigate(`/blog?id=${item._id}`);
       }}
@@ -27,7 +35,11 @@ const ArticleCard = ({ item = {} }) => {
         />
       )}
       {!imageLoaded && item.multimedia[0]?.url && (
-        <Skeleton containerClassName="flex w-40 h-24 rounded-md absolute left-0" />
+        <Skeleton
+          containerClassName="flex w-40 h-24 rounded-md absolute left-0"
+          baseColor={darkMode && "#0D1116"}
+          highlightColor={darkMode && "#24292F"}
+        />
       )}
       <div className="flex flex-col space-y-2 w-full">
         <span className="text-xl font-bold">{item.headline.main}</span>

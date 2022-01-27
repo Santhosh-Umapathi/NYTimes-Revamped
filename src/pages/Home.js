@@ -27,8 +27,6 @@ const Home = () => {
         const results = await api({
           query,
           page,
-          // filterQuery:
-          //   '_id:"nyt://article/d2642fad-dc45-54f2-9c1f-0b1aaa1898f4"',
           fields: "snippet,source,pub_date,_id,word_count,headline,multimedia",
         });
 
@@ -52,12 +50,12 @@ const Home = () => {
 
   return (
     <div className="flex flex-col items-center w-full h-full space-y-3">
-      <div className="flex w-96 items-center">
+      <div className="flex w-96 items-center focus-within:w-[500px] transition-all">
         <input
-          className={`w-full border hover:border-opacity-70 transition-all rounded-md ring-0 outline-none p-2 ${
-            theme === "dark"
-              ? "bg-bgDark border-bgLight focus:shadow-sm focus:shadow-bgLight"
-              : "bg-bgLight border-bgDark focus:shadow-lg"
+          className={`w-full border hover:border-opacity-70 rounded-md ring-0 outline-none p-2 ${
+            darkMode
+              ? "bg-bgDark border-bgLight text-bgLight"
+              : "bg-bgLight border-bgDark text-grey"
           }`}
           placeholder={t("search")}
           onChange={(e) => {
@@ -67,14 +65,27 @@ const Home = () => {
         <Search darkMode={darkMode} onClick={search} />
       </div>
       <div className="flex flex-col w-full px-20  space-y-3">
-        <span className="text-2xl">{t("latest")}</span>
-        <hr className="w-8 border-2 border-grey rounded-sm" />
-        <div className="flex flex-col space-y-3 w-full bg-white shadow-md rounded-md h-96 overflow-y-scroll">
+        <span className={`text-2xl ${darkMode ? "text-bgLight" : "text-grey"}`}>
+          {t("latest")}
+        </span>
+        <hr
+          className={`w-8 border-2  rounded-sm ${
+            darkMode ? "border-bgLight" : "border-grey"
+          }`}
+        />
+        <div
+          className={`flex flex-col space-y-3 w-full ${
+            darkMode ? "bg-primary" : "bg-white"
+          }  shadow-md rounded-md h-96 overflow-y-scroll`}
+        >
           {isLoading
             ? Array(5)
                 .fill("")
                 .map((item, ind) => (
-                  <ArticleCardSkeleton key={ind.toString()} />
+                  <ArticleCardSkeleton
+                    key={ind.toString()}
+                    darkMode={darkMode}
+                  />
                 ))
             : articles.map((item) => (
                 <ArticleCard item={item} key={item._id} />
@@ -86,7 +97,11 @@ const Home = () => {
             disabled={page === 0}
             darkMode={darkMode}
           />
-          <span className="text-lg">{page + 1}</span>
+          <span
+            className={`text-lg ${darkMode ? "text-bgLight" : "text-grey"}`}
+          >
+            {page + 1}
+          </span>
           <NextIcon
             onClick={() => actions.setPage(page + 1)}
             darkMode={darkMode}
