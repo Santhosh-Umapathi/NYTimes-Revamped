@@ -6,3 +6,8 @@ export const theme = atom({
   key: "theme",
   default: getInitialTheme(),
 });
+
+export const articles = atom({
+  key: "articles",
+  default: [],
+});
