@@ -23,4 +23,4 @@ export const renderHTML = (escapedHTML) =>
   });
 
 //Calculate read time of the article
-export const readTime = (word_count) => Math.ceil(+word_count / 225);
+export const readTime = (word_count) => Math.ceil(+word_count / 225) + 1;
