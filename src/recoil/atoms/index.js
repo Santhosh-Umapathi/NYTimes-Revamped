@@ -11,3 +11,13 @@ export const articles = atom({
   key: "articles",
   default: [],
 });
+
+export const article = atom({
+  key: "article",
+  default: null,
+});
+
+export const page = atom({
+  key: "page",
+  default: 0,
+});
