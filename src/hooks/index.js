@@ -1,3 +1,3 @@
-import useTheme from "./useTheme";
+import useLang from "./useLang";
 
-export { useTheme };
+export { useLang };

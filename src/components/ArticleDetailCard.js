@@ -36,7 +36,9 @@ const ArticleDetailCard = ({ item = {} }) => {
             {t("publisher")}
             {item.source}
           </span>
-          <span>{readTime(item.word_count)} minute read</span>
+          <span>
+            {readTime(item.word_count)} {t("read")}
+          </span>
           <span>{new Date(item.pub_date).toDateString()}</span>
         </div>
         <span className="text-xl">{renderHTML(item.snippet)}</span>
@@ -46,7 +48,7 @@ const ArticleDetailCard = ({ item = {} }) => {
             target="_blank"
             className="underline tracking-wide text-orange-600 hover:opacity-70 transition-opacity"
           >
-            Read More
+            {t("readMore")}
           </a>
         </div>
       </div>

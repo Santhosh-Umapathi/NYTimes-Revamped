@@ -4,7 +4,10 @@ import { useTranslation } from "react-i18next";
 const Language = () => {
   const { i18n } = useTranslation();
 
-  const changeLanguage = (lang) => i18n.changeLanguage(lang);
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang);
+    localStorage.setItem("language", lang);
+  };
 
   const LanguageComponent = (val) => (
     <span

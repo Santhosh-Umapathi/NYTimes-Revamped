@@ -37,7 +37,9 @@ const ArticleCard = ({ item = {} }) => {
             {t("publisher")}
             {item.source}
           </span>
-          <span>{readTime(item.word_count)} minute read</span>
+          <span>
+            {readTime(item.word_count)} {t("read")}
+          </span>
           <span>{new Date(item.pub_date).toDateString()}</span>
         </div>
       </div>
