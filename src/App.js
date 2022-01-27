@@ -1,16 +1,23 @@
+import { Routes, Route } from "react-router-dom";
+import { RecoilRoot } from "recoil";
+//Layout
 import Layout from "./layout";
-import { Routes, Route, Link } from "react-router-dom";
 //Pages
 import { Home, Splash, Blog } from "./pages";
+//Translations
+import "./i18n";
+
 function App() {
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<Splash />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/:blog" element={<Blog />} />
-      </Routes>
-    </Layout>
+    <RecoilRoot>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Splash />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/:blog" element={<Blog />} />
+        </Routes>
+      </Layout>
+    </RecoilRoot>
   );
 }
 
