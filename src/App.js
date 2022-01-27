@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Splash />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/:blog" element={<Blog />} />
+          <Route path="/blog" element={<Blog />} />
         </Routes>
       </Layout>
     </RecoilRoot>
