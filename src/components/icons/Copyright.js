@@ -1,9 +1,9 @@
-const Copyright = ({ dark = false }) => (
+const Copyright = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 512 512"
     xmlSpace="preserve"
-    className={`w-4 h-4 ${dark ? "fill-bgLight" : "fill-grey"}`}
+    className={`w-4 h-4 fill-bgLight`}
   >
     <path
       xmlns="http://www.w3.org/2000/svg"

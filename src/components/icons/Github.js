@@ -1,11 +1,9 @@
-const Github = ({ dark = false }) => (
+const Github = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 100 100"
     xmlSpace="preserve"
-    className={`w-6 h-6 hover:opacity-70 transition-opacity cursor-pointer ${
-      dark ? "fill-bgLight" : "fill-github"
-    }`}
+    className={`w-6 h-6 hover:opacity-70 transition-opacity cursor-pointer fill-bgLight`}
     onClick={() => window.open("https://github.com/Santhosh-Umapathi")}
   >
     <path

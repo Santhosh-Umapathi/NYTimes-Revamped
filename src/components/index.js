@@ -1,4 +1,5 @@
 import Logo from "./Logo";
-import * as Icons from "./icons";
+import Language from "./Language";
+import ThemeBulb from "./ThemeBulb";
 
-export { Logo, Icons };
+export { Logo, Language, ThemeBulb };
