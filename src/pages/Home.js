@@ -71,7 +71,7 @@ const Home = () => {
 
   return (
     <div className="flex flex-col items-center w-full h-full space-y-3">
-      <div className="flex w-96 items-center focus-within:w-[500px] transition-all relative">
+      <div className="flex w-96 items-center relative">
         <input
           className={`w-full border hover:border-opacity-70 rounded-md ring-0 outline-none p-2 ${
             darkMode
@@ -84,11 +84,19 @@ const Home = () => {
             setSearchText(e.target.value);
           }}
         />
-        {!searchText.length > 0 ? (
-          <Search darkMode={darkMode} onClick={search} />
-        ) : (
-          <Close darkMode={darkMode} onClick={() => setSearchText("")} />
-        )}
+
+        <Search
+          darkMode={darkMode}
+          onClick={search}
+          animate={searchText.length > 0}
+        />
+
+        <Close
+          darkMode={darkMode}
+          onClick={() => setSearchText("")}
+          animate={!searchText.length > 0}
+        />
+
         <div
           className={`absolute left-0 top-12 flex space-x-3 font-thin text-sm  ${
             darkMode ? "text-bgLight" : "text-grey"

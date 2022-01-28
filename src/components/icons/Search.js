@@ -1,11 +1,14 @@
-const Search = ({ darkMode = false, onClick = () => {} }) => (
+const Search = ({ darkMode = false, onClick = () => {}, animate = false }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 96 96"
     xmlSpace="preserve"
-    className={`w-8 h-8 hover:opacity-70 transition-opacity cursor-pointer relative right-10 ${
-      darkMode ? "fill-bgLight" : "fill-bgDark"
-    }`}
+    className={`w-8 h-8 cursor-pointer absolute right-5 ${
+      animate
+        ? "-translate-y-5 transition-all opacity-0 invisible"
+        : "translate-y-0 transition-all opacity-100 visible hover:opacity-70"
+    } 
+    ${darkMode ? "fill-bgLight" : "fill-bgDark"}`}
     onClick={onClick}
   >
     <path
