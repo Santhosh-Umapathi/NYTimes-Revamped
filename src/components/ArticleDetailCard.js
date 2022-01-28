@@ -38,12 +38,12 @@ const ArticleDetailCard = ({ item = {} }) => {
         />
       )}
       <div
-        className={`flex flex-col space-y-2 w-full ${
+        className={`flex flex-col w-full ${
           darkMode ? "text-bgLight" : "text-grey"
         }`}
       >
-        <span className="text-4xl font-bold">{item.headline.main}</span>
-        <div className="flex space-x-40 font-thin">
+        <span className="text-4xl font-bold mb-3">{item.headline.main}</span>
+        <div className="flex space-x-40 mb-8 font-thin">
           <span>
             {t("publisher")}
             {item.source}
@@ -53,7 +53,7 @@ const ArticleDetailCard = ({ item = {} }) => {
           </span>
           <span>{new Date(item.pub_date).toDateString()}</span>
         </div>
-        <span className="text-xl">{renderHTML(item.snippet)}</span>
+        <span className="text-xl mb-5">{renderHTML(item.snippet)}</span>
         <div className="flex">
           <a
             href={item.web_url}

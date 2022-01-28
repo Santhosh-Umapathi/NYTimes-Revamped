@@ -73,7 +73,7 @@ const Home = () => {
     <div className="flex flex-col items-center w-full h-full space-y-3">
       <div className="flex w-96 items-center relative">
         <input
-          className={`w-full border hover:border-opacity-70 rounded-md ring-0 outline-none p-2 ${
+          className={`w-full border hover:border-opacity-50 focus:border-opacity-100 rounded-md ring-0 outline-none p-2 transition-opacity ${
             darkMode
               ? "bg-bgDark border-bgLight text-bgLight"
               : "bg-bgLight border-bgDark text-grey"

@@ -1,4 +1,5 @@
 export { default as BackIcon } from "./BackIcon";
+export { default as Close } from "./Close";
 export { default as Copyright } from "./Copyright";
 export { default as Github } from "./Github";
 export { default as LeftArrow } from "./LeftArrow";

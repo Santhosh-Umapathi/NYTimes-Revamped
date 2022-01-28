@@ -1,11 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-
-import App from "./App";
+//Web Vitals
 import reportWebVitals from "./reportWebVitals";
 //Navigation
 import { BrowserRouter } from "react-router-dom";
+//CSS
+import "./index.css";
+import "react-perfect-scrollbar/dist/css/styles.css";
+//Main
+import App from "./App";
 
 ReactDOM.render(
   <BrowserRouter>
