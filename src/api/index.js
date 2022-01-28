@@ -1,7 +1,6 @@
 import axios from "axios";
 //Constants
-const API_KEY = "&api-key=" + process.env.REACT_APP_NYTIMES_API_KEY;
-const BASE_URL = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+import { API_KEY, BASE_URL } from "../constants";
 
 export const api = async ({
   query = "",

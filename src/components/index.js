@@ -5,6 +5,8 @@ import ArticleCard from "./ArticleCard";
 import ArticleCardSkeleton from "./ArticleCardSkeleton";
 import ArticleDetailCard from "./ArticleDetailCard";
 import ArticleDetailSkeleton from "./ArticleDetailSkeleton";
+import Searchbar from "./Searchbar";
+import TrendingBar from "./TrendingBar";
 
 export {
   Logo,
@@ -14,4 +16,6 @@ export {
   ArticleCardSkeleton,
   ArticleDetailCard,
   ArticleDetailSkeleton,
+  Searchbar,
+  TrendingBar,
 };

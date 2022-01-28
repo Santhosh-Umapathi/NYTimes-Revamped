@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import PerfectScrollbar from "react-perfect-scrollbar";
@@ -6,35 +5,32 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 //API
 import { api } from "../api";
 //Components
-import { ArticleCard, ArticleCardSkeleton } from "../components";
+import { ArticleCard, ArticleCardSkeleton, Searchbar } from "../components";
 //Icons
-import { Search, NextIcon, BackIcon, Close } from "../components/icons";
+import { NextIcon, BackIcon } from "../components/icons";
 
 //Recoil
 import { useAtoms } from "../recoil/hooks";
 const Home = () => {
   const { t } = useTranslation();
-  const [isLoading, setIsLoading] = useState(false);
-  const [searchText, setSearchText] = useState("");
 
   const {
     state: { theme, articles, page },
     actions,
   } = useAtoms();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const darkMode = theme === "dark";
 
-  const trending = ["Bitcoin", "NFT", "Metaverse"];
-
   const getArticles = useCallback(
-    async (query = "trending", ct) => {
+    async (query = "trending") => {
       setIsLoading(true);
       try {
         const results = await api({
           query,
           page,
           fields: "snippet,source,pub_date,_id,word_count,headline,multimedia",
-          cancelToken: ct?.token,
         });
 
         actions.setArticles(results.response.docs);
@@ -51,70 +47,9 @@ const Home = () => {
     getArticles();
   }, [getArticles]);
 
-  useEffect(() => {
-    const NetworkRequest = axios.CancelToken.source();
-
-    searchText.length > 0
-      ? getArticles(searchText, NetworkRequest)
-      : getArticles();
-
-    return () =>
-      NetworkRequest.cancel("Cancelling previous requests for search");
-  }, [searchText]);
-
-  const search = () => getArticles(searchText);
-
-  const TrendingComponent = ({ item }) => (
-    <span
-      className="cursor-pointer hover:opacity-70 transition-opacity"
-      onClick={() => {
-        setSearchText(item);
-        console.log(item);
-      }}
-    >
-      #{item}
-    </span>
-  );
-
   return (
     <div className="flex flex-col items-center w-full h-full space-y-3">
-      <div className="flex w-96 items-center relative">
-        <input
-          className={`w-full border hover:border-opacity-50 focus:border-opacity-100 rounded-md ring-0 outline-none p-2 transition-opacity ${
-            darkMode
-              ? "bg-bgDark border-bgLight text-bgLight"
-              : "bg-bgLight border-bgDark text-grey"
-          }`}
-          placeholder={t("search")}
-          value={searchText}
-          onChange={(e) => {
-            setSearchText(e.target.value);
-          }}
-        />
-
-        <Search
-          darkMode={darkMode}
-          onClick={search}
-          animate={searchText.length > 0}
-        />
-
-        <Close
-          darkMode={darkMode}
-          onClick={() => setSearchText("")}
-          animate={!searchText.length > 0}
-        />
-
-        <div
-          className={`absolute left-0 top-12 flex space-x-3 font-thin text-sm  ${
-            darkMode ? "text-bgLight" : "text-grey"
-          } `}
-        >
-          <span className="font-semibold">Trending: </span>
-          {trending.map((item, ind) => (
-            <TrendingComponent item={item} key={ind} />
-          ))}
-        </div>
-      </div>
+      <Searchbar setIsLoading={setIsLoading} />
 
       <div className="flex flex-col w-full px-20 space-y-3">
         <span className={`text-2xl ${darkMode ? "text-bgLight" : "text-grey"}`}>
