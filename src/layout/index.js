@@ -3,6 +3,7 @@ import Footer from "./footer";
 import Navbar from "./navbar";
 //Recoil
 import { useAtoms } from "../recoil/hooks";
+//Hooks
 import useLang from "../hooks/useLang";
 
 const Layout = ({ children }) => {
@@ -14,13 +15,13 @@ const Layout = ({ children }) => {
 
   return (
     <div
-      className={`flex w-full h-screen flex-col ${
+      className={`flex w-full flex-col ${
         theme === "dark" ? "bg-bgDark" : "bg-bgLight"
-      } transition-all`}
+      } transition-all overflow-y-clip`}
     >
       <Navbar />
-      <div className="flex">{children}</div>
-      {/* <Footer /> */}
+      <div className="flex mb-20">{children}</div>
+      <Footer />
     </div>
   );
 };

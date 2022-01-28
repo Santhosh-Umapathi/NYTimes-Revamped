@@ -9,7 +9,9 @@ const Navbar = () => {
 
   return (
     <div
-      className={`${pathname === "/" ? "hidden" : "flex"} w-full h-16 
+      className={`${
+        pathname === "/" ? "hidden" : "flex"
+      } w-full h-16 sticky top-0
       items-center justify-between bg-primary px-10 z-50 mb-5`}
     >
       <Logo

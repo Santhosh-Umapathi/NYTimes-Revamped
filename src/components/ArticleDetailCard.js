@@ -30,7 +30,7 @@ const ArticleDetailCard = ({ item = {} }) => {
           onLoad={() => setImageLoaded(true)}
         />
       )}
-      {!imageLoaded && (
+      {!imageLoaded && item.multimedia[4]?.url && (
         <Skeleton
           containerClassName="flex w-full h-[300px] rounded-md absolute top-8"
           baseColor={darkMode && "#24292F"}
