@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 //Logo
 import { Logo } from "../components";
+import { BASE_ROUTE } from "../constants";
 //Recoil
 import { useAtoms } from "../recoil/hooks";
 
@@ -15,10 +16,10 @@ const Splash = () => {
   // Show Splash Screen- Fist time only
   useEffect(() => {
     const isSplashLoaded = localStorage.getItem("splash");
-    isSplashLoaded === "yes" && navigate("/home?page=0");
+    isSplashLoaded === "yes" && navigate(BASE_ROUTE);
     localStorage.setItem("splash", "yes");
     setTimeout(() => {
-      navigate("/home?page=0");
+      navigate(BASE_ROUTE);
     }, 2000);
   }, []);
 

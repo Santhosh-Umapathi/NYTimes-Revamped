@@ -16,8 +16,3 @@ export const article = atom({
   key: "article",
   default: null,
 });
-
-export const page = atom({
-  key: "page",
-  default: 0,
-});

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 //API
 import { api } from "../api";
@@ -14,8 +15,17 @@ import { useAtoms } from "../recoil/hooks";
 const Home = () => {
   const { t } = useTranslation();
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const navigate = useNavigate();
+
+  const page = +searchParams.get("page") <= 0 ? 0 : +searchParams.get("page");
+  const query = searchParams.get("query") ?? "trending";
+  // console.log("🚀 --- Home --- page", page);
+  // console.log("🚀 --- Home --- query", query);
+
   const {
-    state: { theme, articles, page },
+    state: { theme, articles }, //page
     actions,
   } = useAtoms();
 
@@ -49,7 +59,7 @@ const Home = () => {
 
   return (
     <div className="flex flex-col items-center w-full h-full space-y-3">
-      <Searchbar setIsLoading={setIsLoading} />
+      <Searchbar setIsLoading={setIsLoading} page={page} />
 
       <div className="flex flex-col w-full px-20 space-y-3">
         <span className={`text-2xl ${darkMode ? "text-bgLight" : "text-grey"}`}>
@@ -83,8 +93,10 @@ const Home = () => {
 
         <div className="flex w-full flex-row justify-end space-x-5 items-center">
           <BackIcon
-            onClick={() => actions.setPage(page - 1)}
-            disabled={page === 0}
+            onClick={() =>
+              !page <= 0 && setSearchParams({ query: "jack", page: page - 1 })
+            }
+            disabled={page <= 0}
             darkMode={darkMode}
           />
           <span
@@ -93,7 +105,7 @@ const Home = () => {
             {page + 1}
           </span>
           <NextIcon
-            onClick={() => actions.setPage(page + 1)}
+            onClick={() => setSearchParams({ query: "jack", page: page + 1 })}
             darkMode={darkMode}
           />
         </div>

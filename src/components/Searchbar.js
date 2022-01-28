@@ -10,9 +10,9 @@ import { Close, Search } from "./icons";
 //Components
 import { TrendingBar } from ".";
 
-const Searchbar = ({ setIsLoading = () => {} }) => {
+const Searchbar = ({ setIsLoading = () => {}, page = 0 }) => {
   const {
-    state: { theme, page },
+    state: { theme },
     actions,
   } = useAtoms();
   const { t } = useTranslation();

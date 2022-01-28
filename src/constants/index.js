@@ -3,3 +3,5 @@ export const TRENDING = ["Bitcoin", "NFT", "Metaverse"];
 export const API_KEY = "&api-key=" + process.env.REACT_APP_NYTIMES_API_KEY;
 export const BASE_URL =
   "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+//Route
+export const BASE_ROUTE = "/home?query=trending&page=0";
