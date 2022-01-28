@@ -2,6 +2,7 @@
   "name": "nytimes_revamped",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://api.nytimes.com",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
@@ -12,6 +13,7 @@
     "react-dom": "^17.0.2",
     "react-i18next": "^11.15.3",
     "react-loading-skeleton": "^3.0.2",
+    "react-perfect-scrollbar": "^1.5.8",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "recoil": "^0.5.2",
