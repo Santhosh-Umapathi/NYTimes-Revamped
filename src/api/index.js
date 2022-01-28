@@ -8,12 +8,15 @@ export const api = async ({
   fields = "",
   page = 0,
   filterQuery = "",
+  cancelToken,
 }) => {
   const q = query && "?q=" + query;
   const fl = fields && "&fl=" + fields;
   const pg = "&page=" + page;
   const fq = filterQuery && "?fq=" + filterQuery;
-  const response = await axios.get(BASE_URL + q + fq + fl + pg + API_KEY);
+  const response = await axios.get(BASE_URL + q + fq + fl + pg + API_KEY, {
+    cancelToken,
+  });
 
   return response.data;
 };

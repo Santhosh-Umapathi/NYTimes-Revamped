@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import PerfectScrollbar from "react-perfect-scrollbar";
@@ -26,13 +27,14 @@ const Home = () => {
   const trending = ["Bitcoin", "NFT", "Metaverse"];
 
   const getArticles = useCallback(
-    async (query = "trending") => {
+    async (query = "trending", ct) => {
       setIsLoading(true);
       try {
         const results = await api({
           query,
           page,
           fields: "snippet,source,pub_date,_id,word_count,headline,multimedia",
+          cancelToken: ct?.token,
         });
 
         actions.setArticles(results.response.docs);
@@ -50,12 +52,17 @@ const Home = () => {
   }, [getArticles]);
 
   useEffect(() => {
-    searchText.length > 0 && getArticles(searchText);
+    const NetworkRequest = axios.CancelToken.source();
+
+    searchText.length > 0
+      ? getArticles(searchText, NetworkRequest)
+      : getArticles();
+
+    return () =>
+      NetworkRequest.cancel("Cancelling previous requests for search");
   }, [searchText]);
 
-  const search = () => {
-    console.log("search");
-  };
+  const search = () => getArticles(searchText);
 
   const TrendingComponent = ({ item }) => (
     <span
