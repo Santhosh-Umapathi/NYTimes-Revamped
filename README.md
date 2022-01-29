@@ -53,7 +53,6 @@ yarn install && yarn start
 - src
   - api
   - assets
-    - icons
     - images
     - locales
   - components
