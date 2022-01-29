@@ -4,17 +4,12 @@ import { toast } from "react-toastify";
 export const getInitialTheme = () => {
   if (typeof window !== "undefined" && window.localStorage) {
     const storedPrefs = window.localStorage.getItem("color-theme");
-    if (typeof storedPrefs === "string") {
-      return storedPrefs;
-    }
-
+    if (typeof storedPrefs === "string") return storedPrefs !== "light"; // Light theme
     const userMedia = window.matchMedia("(prefers-color-scheme: dark)");
-    if (userMedia.matches) {
-      return "dark";
-    }
+    if (userMedia.matches) return true; //User System theme - Dark
   }
 
-  return "light"; // light theme as the default;
+  return false; // light theme as the default;
 };
 
 //Decode html entities from articles

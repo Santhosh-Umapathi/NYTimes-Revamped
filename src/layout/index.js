@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
     <div
       className={`flex w-full flex-col ${
         darkMode ? "bg-bgDark" : "bg-bgLight"
-      } transition-all overflow-y-clip`}
+      } transition-all`}
     >
       <Navbar />
       <div className="flex mb-20">{children}</div>
