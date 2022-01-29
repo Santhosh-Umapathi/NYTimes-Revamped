@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 //Logo
 import { Logo } from "../components";
+//Constants
 import { BASE_ROUTE } from "../constants";
 //Recoil
 import { useAtoms } from "../recoil/hooks";

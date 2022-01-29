@@ -8,7 +8,7 @@ import useLang from "../hooks/useLang";
 
 const Layout = ({ children }) => {
   const {
-    state: { theme },
+    state: { theme }, //TODO: Fix darkmode here with state
   } = useAtoms();
 
   useLang();

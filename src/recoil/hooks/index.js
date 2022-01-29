@@ -2,6 +2,10 @@ import { useRecoilState } from "recoil";
 //Atoms
 import * as atoms from "../atoms";
 
+//------------------------------------------------------------------
+//MARK: State Management - States & Actions Hook
+//------------------------------------------------------------------
+
 export const useAtoms = () => {
   const [theme, updateTheme] = useRecoilState(atoms.theme);
   const [articles, updateArticles] = useRecoilState(atoms.articles);

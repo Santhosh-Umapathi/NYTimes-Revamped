@@ -58,6 +58,7 @@ const Home = () => {
       setSearchParams({ query, page: 0 });
   }, []);
 
+  //Network request to get articles
   const getArticles = useCallback(async () => {
     setIsLoading(true);
     try {
