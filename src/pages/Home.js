@@ -88,21 +88,27 @@ const Home = () => {
           darkMode={darkMode}
           isSearching={searchText.length > 0}
         />
-        <PerfectScrollbar>
-          <div
-            className={`flex flex-col space-y-3 w-full ${
-              darkMode ? "bg-primary" : "bg-white"
-            }  shadow-md rounded-md h-96`}
-          >
+        <PerfectScrollbar
+          className={`rounded-md shadow-md ${
+            darkMode ? "bg-primary" : "bg-white"
+          }`}
+        >
+          <div className={`flex flex-col w-full h-96 space-y-3`}>
             {isLoading ? (
-              Array(5)
-                .fill("")
-                .map((_, ind) => (
-                  <ArticleCardSkeleton
-                    key={ind.toString()}
-                    darkMode={darkMode}
-                  />
-                ))
+              <div
+                className={`h-[500px] flex flex-col ${
+                  darkMode ? "bg-primary" : "bg-white"
+                }`}
+              >
+                {Array(3)
+                  .fill("")
+                  .map((_, ind) => (
+                    <ArticleCardSkeleton
+                      key={ind.toString()}
+                      darkMode={darkMode}
+                    />
+                  ))}
+              </div>
             ) : !articles.length > 0 ? (
               <span
                 className={`p-5 text-xl ${

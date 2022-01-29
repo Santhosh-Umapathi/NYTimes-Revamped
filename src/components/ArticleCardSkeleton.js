@@ -3,7 +3,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const ArticleCardSkeleton = ({ darkMode = false }) => (
-  <div className="flex border-b rounded-md p-5 space-x-5">
+  <div className="flex border-b p-5 space-x-5">
     <Skeleton
       containerClassName="flex w-52 h-24"
       baseColor={darkMode && "#0D1116"}
