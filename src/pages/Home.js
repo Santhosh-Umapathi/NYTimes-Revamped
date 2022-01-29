@@ -7,9 +7,12 @@ import { toast } from "react-toastify";
 //API
 import { api } from "../api";
 //Components
-import { ArticleCard, ArticleCardSkeleton, Searchbar } from "../components";
-//Icons
-import { NextIcon, BackIcon } from "../components/icons";
+import {
+  ArticleCard,
+  ArticleCardSkeleton,
+  Pagination,
+  Searchbar,
+} from "../components";
 
 //Recoil
 import { useAtoms } from "../recoil/hooks";
@@ -129,24 +132,7 @@ const Home = () => {
         </PerfectScrollbar>
 
         {articles.length > 0 && (
-          <div className="flex w-full flex-row justify-end space-x-5 items-center">
-            <BackIcon
-              onClick={() =>
-                !page <= 0 && setSearchParams({ query, page: page - 1 })
-              }
-              disabled={page <= 0}
-              darkMode={darkMode}
-            />
-            <span
-              className={`text-lg ${darkMode ? "text-bgLight" : "text-grey"}`}
-            >
-              {page + 1}
-            </span>
-            <NextIcon
-              onClick={() => setSearchParams({ query, page: page + 1 })}
-              darkMode={darkMode}
-            />
-          </div>
+          <Pagination page={page} query={query} darkMode={darkMode} />
         )}
       </div>
     </div>

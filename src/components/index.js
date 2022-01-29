@@ -7,6 +7,7 @@ import ArticleDetailCard from "./ArticleDetailCard";
 import ArticleDetailSkeleton from "./ArticleDetailSkeleton";
 import Searchbar from "./Searchbar";
 import TrendingBar from "./TrendingBar";
+import Pagination from "./Pagination";
 
 export {
   Logo,
@@ -18,4 +19,5 @@ export {
   ArticleDetailSkeleton,
   Searchbar,
   TrendingBar,
+  Pagination,
 };
