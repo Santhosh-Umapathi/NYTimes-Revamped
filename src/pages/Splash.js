@@ -29,9 +29,9 @@ const Splash = () => {
       } `}
     >
       <Logo
-        css={`w-[500px] animate-pulse ${
+        css={`animate-pulse w-[500px] ${
           darkMode ? "fill-bgLight" : "fill-grey"
-        }  `}
+        }`}
         cssText={`text-xl animate-pulse ${
           darkMode ? "text-bgLight" : "text-grey"
         }`}
