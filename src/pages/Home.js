@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import PerfectScrollbar from "react-perfect-scrollbar";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import PerfectScrollbar from "react-perfect-scrollbar";
 
 //API
 import { api } from "../api";
@@ -12,10 +12,11 @@ import {
   ArticleCardSkeleton,
   Pagination,
   Searchbar,
+  SectionHeader,
 } from "../components";
-
 //Recoil
 import { useAtoms } from "../recoil/hooks";
+
 const Home = () => {
   const {
     state: { theme, articles, searchText },
@@ -24,6 +25,8 @@ const Home = () => {
   const { t } = useTranslation();
 
   const [searchParams, setSearchParams] = useSearchParams();
+  const [isLoading, setIsLoading] = useState(false);
+  const darkMode = theme === "dark";
 
   //Updating Page Value
   let page =
@@ -52,10 +55,6 @@ const Home = () => {
     )
       setSearchParams({ query, page: 0 });
   }, []);
-
-  const [isLoading, setIsLoading] = useState(false);
-
-  const darkMode = theme === "dark";
 
   const getArticles = useCallback(async () => {
     setIsLoading(true);
@@ -94,13 +93,9 @@ const Home = () => {
       <Searchbar setIsLoading={setIsLoading} page={page} />
 
       <div className="flex flex-col w-full px-20 space-y-3">
-        <span className={`text-2xl ${darkMode ? "text-bgLight" : "text-grey"}`}>
-          {searchText.length > 0 ? t("results") : t("latest")}
-        </span>
-        <hr
-          className={`w-8 border-2  rounded-sm ${
-            darkMode ? "border-bgLight" : "border-grey"
-          }`}
+        <SectionHeader
+          darkMode={darkMode}
+          isSearching={searchText.length > 0}
         />
         <PerfectScrollbar>
           <div
