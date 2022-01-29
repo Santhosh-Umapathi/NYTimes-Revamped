@@ -1,6 +1,8 @@
 import { useEffect, useCallback, memo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
+
 //API
 import axios from "axios";
 import { api } from "../api";
@@ -34,7 +36,18 @@ const Searchbar = ({ setIsLoading = () => {}, page = 0 }) => {
 
         setArticles(results.response.docs);
       } catch (error) {
-        console.log("🚀 --- getArticles --- error", error);
+        toast.error(t("error"), {
+          position: "bottom-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          pauseOnFocusLoss: false,
+          draggable: false,
+          progress: undefined,
+          theme: darkMode ? "dark" : "light",
+          style: { background: darkMode && "#0D1116" },
+        });
       } finally {
         setTimeout(() => setIsLoading(false), 1000);
       }
