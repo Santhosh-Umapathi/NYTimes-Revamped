@@ -2,15 +2,15 @@ import { memo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 //Components
-import { Skeleton } from ".";
+import { Skeleton } from "..";
 //Helpers
-import { readTime, renderHTML } from "../helpers";
+import { readTime, renderHTML } from "../../helpers";
 //Icon
-import { LeftArrow } from "./icons";
+import { LeftArrow } from "../icons";
 //Recoil
-import { useAtoms } from "../recoil/hooks";
+import { useAtoms } from "../../recoil/hooks";
 //Constants
-import { IMAGE_SOURCE } from "../constants";
+import { IMAGE_SOURCE } from "../../constants";
 
 const ArticleDetailCard = ({ item = {} }) => {
   const {

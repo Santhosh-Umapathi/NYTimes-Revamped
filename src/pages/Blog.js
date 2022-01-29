@@ -1,16 +1,23 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, lazy, Suspense } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 //API
 import { api } from "../api";
-//Components
-import { ArticleDetailCard, ArticleDetailSkeleton } from "../components";
 //Constants
 import { FILTER_FIELDS } from "../constants";
 //Helpers
 import { ErrorToast } from "../helpers";
 //Recoil
 import { useAtoms } from "../recoil/hooks";
+//Components
+import { Skeleton } from "../components";
+//Components - Lazy Loading
+const ArticleDetailCard = lazy(() =>
+  import("../components/page/ArticleDetailCard")
+);
+const ArticleDetailSkeleton = lazy(() =>
+  import("../components/page/ArticleDetailSkeleton")
+);
 
 const Blog = () => {
   const {
@@ -45,9 +52,13 @@ const Blog = () => {
   return (
     <div className={`flex w-full`}>
       {isLoading ? (
-        <ArticleDetailSkeleton />
+        <Suspense fallback={<Skeleton css="w-40 h-20" />}>
+          <ArticleDetailSkeleton />
+        </Suspense>
       ) : (
-        <ArticleDetailCard item={article} />
+        <Suspense fallback={<Skeleton css="w-40 h-20" />}>
+          <ArticleDetailCard item={article} />
+        </Suspense>
       )}
     </div>
   );

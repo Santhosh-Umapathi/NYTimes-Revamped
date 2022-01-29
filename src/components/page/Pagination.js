@@ -1,9 +1,9 @@
 import { memo } from "react";
 import { useSearchParams } from "react-router-dom";
 //Recoil
-import { useAtoms } from "../recoil/hooks";
+import { useAtoms } from "../../recoil/hooks";
 //Icons
-import { BackIcon, NextIcon } from "./icons";
+import { BackIcon, NextIcon } from "../icons";
 
 const Pagination = ({ page = 0, query = "" }) => {
   const {

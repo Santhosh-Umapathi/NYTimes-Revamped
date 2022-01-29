@@ -2,13 +2,13 @@ import { memo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 //Helpers
-import { readTime, renderHTML } from "../helpers";
+import { readTime, renderHTML } from "../../helpers";
 //Recoil
-import { useAtoms } from "../recoil/hooks";
+import { useAtoms } from "../../recoil/hooks";
 //Constants
-import { IMAGE_SOURCE } from "../constants";
+import { IMAGE_SOURCE } from "../../constants";
 //Components
-import { Skeleton } from ".";
+import { Skeleton } from "..";
 
 const ArticleCard = ({ item = {} }) => {
   const navigate = useNavigate();

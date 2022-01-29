@@ -3,17 +3,17 @@ import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 //API
 import axios from "axios";
-import { api } from "../api";
+import { api } from "../../api";
 //Recoil
-import { useAtoms } from "../recoil/hooks";
+import { useAtoms } from "../../recoil/hooks";
 //Icons
-import { Close, Search } from "./icons";
+import { Close, Search } from "../icons";
 //Components
-import { TrendingBar } from ".";
+import { TrendingBar } from "..";
 //Helpers
-import { ErrorToast } from "../helpers";
+import { ErrorToast } from "../../helpers";
 //Constants
-import { FILTER_FIELDS } from "../constants";
+import { FILTER_FIELDS } from "../../constants";
 
 const Searchbar = ({ setIsLoading = () => {}, page = 0 }) => {
   const {

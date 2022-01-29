@@ -1,28 +1,32 @@
+import { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import { ToastContainer } from "react-toastify";
-
-//Layout
-import Layout from "./layout";
-//Pages
-import { Home, Splash, Blog } from "./pages";
 //Translations
 import "./i18n";
+//Layout
+import Layout from "./layout";
+//Components
+import { Skeleton } from "./components";
+//Pages
+import { Home, Splash } from "./pages";
+//Page - Lazy Loading
+const Blog = lazy(() => import("./pages/Blog"));
 
-function App() {
-  return (
-    <RecoilRoot>
-      <Layout>
+const App = () => (
+  <RecoilRoot>
+    <Layout>
+      <Suspense fallback={<Skeleton css="w-40 h-20" />}>
         <Routes>
           <Route path="/" element={<Splash />} />
           <Route path="/home" element={<Home />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="*" element={<Navigate to="/home" />} />
         </Routes>
-      </Layout>
-      <ToastContainer />
-    </RecoilRoot>
-  );
-}
+      </Suspense>
+    </Layout>
+    <ToastContainer />
+  </RecoilRoot>
+);
 
 export default App;

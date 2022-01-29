@@ -1,6 +1,6 @@
 import { memo } from "react";
 //Components
-import { Skeleton } from ".";
+import { Skeleton } from "..";
 
 const ArticleDetailSkeleton = () => (
   <div className="flex flex-col px-5 space-y-5 w-full">

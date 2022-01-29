@@ -1,8 +1,8 @@
 import { memo } from "react";
 //Components
-import { Skeleton } from ".";
+import { Skeleton } from "..";
 //Recoil
-import { useAtoms } from "../recoil/hooks";
+import { useAtoms } from "../../recoil/hooks";
 
 const ArticleCardSkeleton = () => {
   const {
