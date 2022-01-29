@@ -12,8 +12,7 @@ const BackIcon = ({
       disabled
         ? "cursor-not-allowed opacity-40"
         : "cursor-pointer hover:opacity-70 transition-opacity"
-    }
-    `}
+    }`}
     onClick={onClick}
   >
     <path

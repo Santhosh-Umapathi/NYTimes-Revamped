@@ -25,6 +25,7 @@ const Searchbar = ({ setIsLoading = () => {}, page = 0 }) => {
 
   const darkMode = theme === "dark";
 
+  //Network request to get articles
   const getArticles = useCallback(
     async (query = "trending", ct) => {
       setIsLoading(true);
@@ -46,6 +47,7 @@ const Searchbar = ({ setIsLoading = () => {}, page = 0 }) => {
     [page]
   );
 
+  // Search field handler
   const onChangeHandler = (e, val) => {
     const value = e?.target?.value ?? val;
     setSearchText(value);

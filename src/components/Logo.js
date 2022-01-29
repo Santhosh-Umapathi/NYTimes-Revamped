@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 const Logo = ({
   css = "",
   cssText = "",
@@ -18,4 +20,4 @@ const Logo = ({
   </div>
 );
 
-export default Logo;
+export default memo(Logo);

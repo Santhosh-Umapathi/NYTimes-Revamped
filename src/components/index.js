@@ -9,6 +9,7 @@ import Searchbar from "./Searchbar";
 import TrendingBar from "./TrendingBar";
 import Pagination from "./Pagination";
 import SectionHeader from "./SectionHeader";
+import Skeleton from "./Skeleton";
 
 export {
   Logo,
@@ -22,4 +23,5 @@ export {
   TrendingBar,
   Pagination,
   SectionHeader,
+  Skeleton,
 };

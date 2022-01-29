@@ -1,40 +1,53 @@
-//Helpers
-import { useState } from "react";
+import { memo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-//Skeleton Placeholder
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+//Components
+import { Skeleton } from ".";
 //Helpers
 import { readTime, renderHTML } from "../helpers";
 //Icon
 import { LeftArrow } from "./icons";
+//Recoil
 import { useAtoms } from "../recoil/hooks";
+//Constants
+import { IMAGE_SOURCE } from "../constants";
 
 const ArticleDetailCard = ({ item = {} }) => {
-  const { t } = useTranslation();
   const { state } = useAtoms();
+  const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  const navigate = useNavigate();
   const darkMode = state.theme === "dark";
+  //Destructing item
+  const {
+    headline,
+    snippet,
+    source,
+    word_count,
+    pub_date,
+    multimedia,
+    web_url,
+  } = item;
+  const imageUrl = multimedia[9]?.url;
 
   return (
     <div className="flex flex-col px-5 space-y-5 w-full relative">
       <LeftArrow onClick={() => navigate(-1)} darkMode={darkMode} />
-      {item.multimedia[4]?.url && (
+      {imageUrl && (
         <img
-          src={"https://www.nytimes.com/" + item.multimedia[9]?.url}
+          src={IMAGE_SOURCE + imageUrl}
           className="rounded-md object-cover w-full h-[300px]"
           onLoad={() => setImageLoaded(true)}
         />
       )}
-      {!imageLoaded && item.multimedia[4]?.url && (
+      {!imageLoaded && imageUrl && (
         <Skeleton
-          containerClassName="flex w-full h-[300px] rounded-md absolute top-8"
-          baseColor={darkMode && "#24292F"}
-          highlightColor={darkMode && "#0D1116"}
+          css="flex w-full h-[300px] rounded-md absolute top-8"
+          baseColor="#24292F"
+          highlightColor="#0D1116"
+          darkMode={darkMode}
         />
       )}
       <div
@@ -42,21 +55,21 @@ const ArticleDetailCard = ({ item = {} }) => {
           darkMode ? "text-bgLight" : "text-grey"
         }`}
       >
-        <span className="text-4xl font-bold mb-3">{item.headline.main}</span>
+        <span className="text-4xl font-bold mb-3">{headline.main}</span>
         <div className="flex space-x-40 mb-8 font-thin">
           <span>
             {t("publisher")}
-            {item.source}
+            {source}
           </span>
           <span>
-            {readTime(item.word_count)} {t("read")}
+            {readTime(word_count)} {t("read")}
           </span>
-          <span>{new Date(item.pub_date).toDateString()}</span>
+          <span>{new Date(pub_date).toDateString()}</span>
         </div>
-        <span className="text-xl mb-5">{renderHTML(item.snippet)}</span>
+        <span className="text-xl mb-5">{renderHTML(snippet)}</span>
         <div className="flex">
           <a
-            href={item.web_url}
+            href={web_url}
             target="_blank"
             className="underline tracking-wide text-orange-600 hover:opacity-70 transition-opacity"
           >
@@ -68,4 +81,4 @@ const ArticleDetailCard = ({ item = {} }) => {
   );
 };
 
-export default ArticleDetailCard;
+export default memo(ArticleDetailCard);

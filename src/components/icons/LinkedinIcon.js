@@ -1,11 +1,12 @@
+//Constants
+import { LINKEDIN_URL } from "../../constants";
+
 const LinkedinIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     className={`w-5 h-5 hover:opacity-70 transition-opacity cursor-pointer fill-linkedIn`}
-    onClick={() =>
-      window.open("https://www.linkedin.com/in/santhosh-umapathi-05011992/")
-    }
+    onClick={() => window.open(LINKEDIN_URL)}
   >
     <path
       xmlns="http://www.w3.org/2000/svg"
