@@ -32,7 +32,9 @@ const Splash = () => {
         css={`w-[500px] animate-pulse ${
           darkMode ? "fill-bgLight" : "fill-grey"
         }  `}
-        cssText={`animate-pulse ${darkMode ? "text-bgLight" : "text-grey"}`}
+        cssText={`text-xl animate-pulse ${
+          darkMode ? "text-bgLight" : "text-grey"
+        }`}
       />
     </div>
   );
