@@ -13,10 +13,10 @@ import { Skeleton } from ".";
 const ArticleCard = ({ item = {} }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { state } = useAtoms();
+  const {
+    state: { darkMode },
+  } = useAtoms();
   const [imageLoaded, setImageLoaded] = useState(false);
-
-  const darkMode = state.theme === "dark";
 
   //Destructing item
   const { _id, headline, snippet, source, word_count, pub_date, multimedia } =
@@ -40,10 +40,7 @@ const ArticleCard = ({ item = {} }) => {
         />
       )}
       {!imageLoaded && imageUrl && (
-        <Skeleton
-          css="flex w-40 h-24 rounded-md absolute left-0"
-          darkMode={darkMode}
-        />
+        <Skeleton css="flex w-40 h-24 rounded-md absolute left-0" />
       )}
       <div className="flex flex-col space-y-2 w-full">
         <span className="text-xl font-bold">{headline.main}</span>

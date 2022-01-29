@@ -5,8 +5,8 @@ import { getInitialTheme } from "../../helpers";
 //------------------------------------------------------------------
 //MARK: State Management - Default Initial values
 //------------------------------------------------------------------
-export const theme = atom({
-  key: "theme",
+export const darkMode = atom({
+  key: "darkMode",
   default: getInitialTheme(),
 });
 

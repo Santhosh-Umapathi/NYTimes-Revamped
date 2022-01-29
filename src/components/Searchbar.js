@@ -17,13 +17,11 @@ import { FILTER_FIELDS } from "../constants";
 
 const Searchbar = ({ setIsLoading = () => {}, page = 0 }) => {
   const {
-    state: { theme, searchText },
+    state: { darkMode, searchText },
     actions: { setArticles, setSearchText },
   } = useAtoms();
   const { t } = useTranslation();
   const [_, setSearchParams] = useSearchParams();
-
-  const darkMode = theme === "dark";
 
   //Network request to get articles
   const getArticles = useCallback(
@@ -82,15 +80,9 @@ const Searchbar = ({ setIsLoading = () => {}, page = 0 }) => {
         onChange={onChangeHandler}
       />
 
-      <Search darkMode={darkMode} animate={searchText.length > 0} />
-
-      <Close
-        darkMode={darkMode}
-        onClick={clearSearch}
-        animate={!searchText.length > 0}
-      />
-
-      <TrendingBar darkMode={darkMode} setSearchText={onChangeHandler} />
+      <Search animate={searchText.length > 0} />
+      <Close onClick={clearSearch} animate={!searchText.length > 0} />
+      <TrendingBar setSearchText={onChangeHandler} />
     </div>
   );
 };

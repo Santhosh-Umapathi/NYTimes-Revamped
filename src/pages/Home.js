@@ -21,14 +21,13 @@ import { ErrorToast } from "../helpers";
 
 const Home = () => {
   const {
-    state: { theme, articles, searchText },
+    state: { darkMode, articles, searchText },
     actions,
   } = useAtoms();
   const { t } = useTranslation();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
-  const darkMode = theme === "dark";
 
   //Updating Page Value
   let page =
@@ -85,10 +84,7 @@ const Home = () => {
       <Searchbar setIsLoading={setIsLoading} page={page} />
 
       <div className="flex flex-col w-full px-20 space-y-3">
-        <SectionHeader
-          darkMode={darkMode}
-          isSearching={searchText.length > 0}
-        />
+        <SectionHeader isSearching={searchText.length > 0} />
         <PerfectScrollbar
           className={`rounded-md shadow-md ${
             darkMode ? "bg-primary" : "bg-white"
@@ -104,10 +100,7 @@ const Home = () => {
                 {Array(3)
                   .fill("")
                   .map((_, ind) => (
-                    <ArticleCardSkeleton
-                      key={ind.toString()}
-                      darkMode={darkMode}
-                    />
+                    <ArticleCardSkeleton key={ind.toString()} />
                   ))}
               </div>
             ) : !articles.length > 0 ? (
@@ -124,9 +117,7 @@ const Home = () => {
           </div>
         </PerfectScrollbar>
 
-        {articles.length > 0 && (
-          <Pagination page={page} query={query} darkMode={darkMode} />
-        )}
+        {articles.length > 0 && <Pagination page={page} query={query} />}
       </div>
     </div>
   );

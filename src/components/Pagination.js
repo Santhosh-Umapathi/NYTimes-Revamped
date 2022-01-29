@@ -1,9 +1,14 @@
 import { memo } from "react";
 import { useSearchParams } from "react-router-dom";
+//Recoil
+import { useAtoms } from "../recoil/hooks";
 //Icons
 import { BackIcon, NextIcon } from "./icons";
 
-const Pagination = ({ page = 0, query = "", darkMode = false }) => {
+const Pagination = ({ page = 0, query = "" }) => {
+  const {
+    state: { darkMode },
+  } = useAtoms();
   const [_, setSearchParams] = useSearchParams();
 
   return (
@@ -11,7 +16,6 @@ const Pagination = ({ page = 0, query = "", darkMode = false }) => {
       <BackIcon
         onClick={() => !page <= 0 && setSearchParams({ query, page: page - 1 })}
         disabled={page <= 0}
-        darkMode={darkMode}
       />
       <span
         className={`text-lg ${
@@ -20,10 +24,7 @@ const Pagination = ({ page = 0, query = "", darkMode = false }) => {
       >
         {page + 1}
       </span>
-      <NextIcon
-        onClick={() => setSearchParams({ query, page: page + 1 })}
-        darkMode={darkMode}
-      />
+      <NextIcon onClick={() => setSearchParams({ query, page: page + 1 })} />
     </div>
   );
 };

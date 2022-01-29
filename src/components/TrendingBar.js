@@ -2,8 +2,13 @@ import { memo } from "react";
 import { useTranslation } from "react-i18next";
 //Constant
 import { TRENDING } from "../constants";
+//Recoil
+import { useAtoms } from "../recoil/hooks";
 
-const TrendingBar = ({ darkMode = false, setSearchText = () => {} }) => {
+const TrendingBar = ({ setSearchText = () => {} }) => {
+  const {
+    state: { darkMode },
+  } = useAtoms();
   const { t } = useTranslation();
 
   return (

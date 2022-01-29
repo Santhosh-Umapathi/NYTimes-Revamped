@@ -1,7 +1,12 @@
 import { memo } from "react";
 import { useTranslation } from "react-i18next";
+//Recoil
+import { useAtoms } from "../recoil/hooks";
 
-const SectionHeader = ({ darkMode = false, isSearching = false }) => {
+const SectionHeader = ({ isSearching = false }) => {
+  const {
+    state: { darkMode },
+  } = useAtoms();
   const { t } = useTranslation();
 
   return (

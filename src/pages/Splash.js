@@ -11,10 +11,8 @@ const Splash = () => {
   const navigate = useNavigate();
 
   const {
-    state: { theme },
+    state: { darkMode },
   } = useAtoms();
-
-  const darkMode = theme === "dark";
 
   // Show Splash Screen- Fist time only
   useEffect(() => {

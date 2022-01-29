@@ -13,13 +13,15 @@ import { ErrorToast } from "../helpers";
 import { useAtoms } from "../recoil/hooks";
 
 const Blog = () => {
-  const { state, actions } = useAtoms();
+  const {
+    state: { darkMode, article },
+    actions,
+  } = useAtoms();
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(true);
 
   const id = searchParams.get("id");
-  const darkMode = state.theme === "dark";
 
   const getArticle = useCallback(async () => {
     try {
@@ -43,9 +45,9 @@ const Blog = () => {
   return (
     <div className={`flex w-full`}>
       {isLoading ? (
-        <ArticleDetailSkeleton darkMode={darkMode} />
+        <ArticleDetailSkeleton />
       ) : (
-        <ArticleDetailCard item={state.article} />
+        <ArticleDetailCard item={article} />
       )}
     </div>
   );

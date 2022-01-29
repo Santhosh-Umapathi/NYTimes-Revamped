@@ -7,18 +7,18 @@ import * as atoms from "../atoms";
 //------------------------------------------------------------------
 
 export const useAtoms = () => {
-  const [theme, updateTheme] = useRecoilState(atoms.theme);
+  const [darkMode, updateDarkMode] = useRecoilState(atoms.darkMode);
   const [articles, updateArticles] = useRecoilState(atoms.articles);
   const [article, updateArticle] = useRecoilState(atoms.article);
   const [searchText, updateSearchText] = useRecoilState(atoms.searchText);
 
-  const setTheme = (payload) => {
+  const toggleTheme = (payload) => {
     const root = window.document.documentElement;
     const isDark = payload === "dark";
     root.classList.remove(isDark ? "light" : "dark");
     root.classList.add(payload);
     localStorage.setItem("color-theme", payload);
-    updateTheme(payload);
+    updateDarkMode(payload === "dark");
   };
 
   const setArticles = (payload) => {
@@ -35,7 +35,7 @@ export const useAtoms = () => {
 
   //Atoms State
   const state = {
-    theme,
+    darkMode,
     articles,
     article,
     searchText,
@@ -43,7 +43,7 @@ export const useAtoms = () => {
 
   //Atoms Actions
   const actions = {
-    setTheme,
+    toggleTheme,
     setArticles,
     setArticle,
     setSearchText,

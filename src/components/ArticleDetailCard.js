@@ -13,13 +13,14 @@ import { useAtoms } from "../recoil/hooks";
 import { IMAGE_SOURCE } from "../constants";
 
 const ArticleDetailCard = ({ item = {} }) => {
-  const { state } = useAtoms();
+  const {
+    state: { darkMode },
+  } = useAtoms();
   const navigate = useNavigate();
   const { t } = useTranslation();
 
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  const darkMode = state.theme === "dark";
   //Destructing item
   const {
     headline,
@@ -34,7 +35,7 @@ const ArticleDetailCard = ({ item = {} }) => {
 
   return (
     <div className="flex flex-col px-5 space-y-5 w-full relative">
-      <LeftArrow onClick={() => navigate(-1)} darkMode={darkMode} />
+      <LeftArrow onClick={() => navigate(-1)} />
       {imageUrl && (
         <img
           src={IMAGE_SOURCE + imageUrl}
@@ -47,7 +48,6 @@ const ArticleDetailCard = ({ item = {} }) => {
           css="flex w-full h-[300px] rounded-md absolute top-8"
           baseColor="#24292F"
           highlightColor="#0D1116"
-          darkMode={darkMode}
         />
       )}
       <div

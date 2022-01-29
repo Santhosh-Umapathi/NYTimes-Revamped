@@ -8,7 +8,7 @@ import useLang from "../hooks/useLang";
 
 const Layout = ({ children }) => {
   const {
-    state: { theme }, //TODO: Fix darkmode here with state
+    state: { darkMode },
   } = useAtoms();
 
   useLang();
@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
   return (
     <div
       className={`flex w-full flex-col ${
-        theme === "dark" ? "bg-bgDark" : "bg-bgLight"
+        darkMode ? "bg-bgDark" : "bg-bgLight"
       } transition-all overflow-y-clip`}
     >
       <Navbar />

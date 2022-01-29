@@ -6,14 +6,14 @@ import { LightOff, LightOn } from "./icons";
 
 const ThemeBulb = () => {
   const {
-    state: { theme },
-    actions: { setTheme },
+    state: { darkMode },
+    actions,
   } = useAtoms();
 
   const toggleTheme = () =>
-    theme === "dark" ? setTheme("light") : setTheme("dark");
+    darkMode ? actions.toggleTheme("light") : actions.toggleTheme("dark");
 
-  return theme === "dark" ? (
+  return darkMode ? (
     <LightOff onClick={toggleTheme} />
   ) : (
     <LightOn onClick={toggleTheme} />
