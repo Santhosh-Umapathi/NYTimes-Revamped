@@ -16,3 +16,8 @@ export const article = atom({
   key: "article",
   default: null,
 });
+
+export const searchText = atom({
+  key: "searchText",
+  default: "",
+});

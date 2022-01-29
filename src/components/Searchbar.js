@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, memo } from "react";
+import { useEffect, useCallback, memo } from "react";
 import { useTranslation } from "react-i18next";
 //API
 import axios from "axios";
@@ -12,12 +12,10 @@ import { TrendingBar } from ".";
 
 const Searchbar = ({ setIsLoading = () => {}, page = 0 }) => {
   const {
-    state: { theme },
-    actions,
+    state: { theme, searchText },
+    actions: { setArticles, setSearchText },
   } = useAtoms();
   const { t } = useTranslation();
-
-  const [searchText, setSearchText] = useState("");
 
   const darkMode = theme === "dark";
 
@@ -32,7 +30,7 @@ const Searchbar = ({ setIsLoading = () => {}, page = 0 }) => {
           cancelToken: ct?.token,
         });
 
-        actions.setArticles(results.response.docs);
+        setArticles(results.response.docs);
       } catch (error) {
         console.log("🚀 --- getArticles --- error", error);
       } finally {
