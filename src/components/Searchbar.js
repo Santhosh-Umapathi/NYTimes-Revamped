@@ -68,7 +68,7 @@ const Searchbar = ({ setIsLoading = () => {}, page = 0 }) => {
   }, [searchText]);
 
   return (
-    <div className="flex w-96 items-center  sticky top-16">
+    <div className="flex w-full md:w-96 items-center sticky top-16">
       <input
         className={`w-full border hover:border-opacity-50 focus:border-opacity-100 rounded-md ring-0 outline-none p-2 transition-opacity ${
           darkMode

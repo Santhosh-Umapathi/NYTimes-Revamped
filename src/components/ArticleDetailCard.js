@@ -39,7 +39,7 @@ const ArticleDetailCard = ({ item = {} }) => {
       {imageUrl && (
         <img
           src={IMAGE_SOURCE + imageUrl}
-          className="rounded-md object-cover w-full h-[300px]"
+          className="rounded-md object-cover w-full h-[200px] md:h-[300px]"
           onLoad={() => setImageLoaded(true)}
         />
       )}
@@ -55,8 +55,10 @@ const ArticleDetailCard = ({ item = {} }) => {
           darkMode ? "text-bgLight" : "text-grey"
         }`}
       >
-        <span className="text-4xl font-bold mb-3">{headline.main}</span>
-        <div className="flex space-x-40 mb-8 font-thin">
+        <span className="text-2xl md:text-4xl font-bold mb-3">
+          {headline.main}
+        </span>
+        <div className="flex space-x-5 md:space-x-40 mb-4 md:mb-8 font-thin text-xs md:text-base">
           <span>
             {t("publisher")}
             {source}
@@ -66,12 +68,14 @@ const ArticleDetailCard = ({ item = {} }) => {
           </span>
           <span>{new Date(pub_date).toDateString()}</span>
         </div>
-        <span className="text-xl mb-5">{renderHTML(snippet)}</span>
+        <span className="text-md md:text-xl mb-2 md:mb-5">
+          {renderHTML(snippet)}
+        </span>
         <div className="flex select-none">
           <a
             href={web_url}
             target="_blank"
-            className="underline tracking-wide text-orange-600 hover:opacity-70 transition-opacity"
+            className="underline tracking-wide text-orange-600 hover:opacity-70 transition-opacity text-sm md:text-base"
           >
             {t("readMore")}
           </a>

@@ -80,10 +80,10 @@ const Home = () => {
   }, [getArticles]);
 
   return (
-    <div className="flex flex-col items-center w-full h-full space-y-3">
+    <div className="flex flex-col items-center w-full h-full space-y-10 md:space-y-3 mx-10 md:mx-0">
       <Searchbar setIsLoading={setIsLoading} page={page} />
 
-      <div className="flex flex-col w-full px-20 space-y-3">
+      <div className="flex flex-col w-full md:px-20 space-y-3 ">
         <SectionHeader isSearching={searchText.length > 0} />
         <PerfectScrollbar
           className={`rounded-md shadow-md ${

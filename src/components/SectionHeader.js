@@ -10,9 +10,9 @@ const SectionHeader = ({ isSearching = false }) => {
   const { t } = useTranslation();
 
   return (
-    <>
+    <div className="sticky top-32 md:top-20 z-20">
       <span
-        className={`text-2xl select-none ${
+        className={`text-2xl select-none  ${
           darkMode ? "text-bgLight" : "text-grey"
         }`}
       >
@@ -23,7 +23,7 @@ const SectionHeader = ({ isSearching = false }) => {
           darkMode ? "border-bgLight" : "border-grey"
         }`}
       />
-    </>
+    </div>
   );
 };
 

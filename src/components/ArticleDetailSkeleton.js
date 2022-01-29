@@ -11,7 +11,7 @@ const ArticleDetailSkeleton = () => (
       highlightColor="#0D1116"
     />
     <Skeleton
-      css="flex w-full h-60 rounded-md"
+      css="flex w-full h-52 md:h-60 rounded-md"
       baseColor="#24292F"
       highlightColor="#0D1116"
     />
@@ -23,7 +23,7 @@ const ArticleDetailSkeleton = () => (
         highlightColor="#0D1116"
       />
 
-      <div className="flex space-x-40">
+      <div className="flex space-x-5 md:space-x-40">
         <Skeleton
           css="flex w-40 h-4"
           baseColor="#24292F"

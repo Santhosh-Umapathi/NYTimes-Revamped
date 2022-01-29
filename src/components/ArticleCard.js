@@ -25,7 +25,7 @@ const ArticleCard = ({ item = {} }) => {
 
   return (
     <div
-      className={`flex border-b p-5 space-x-5 hover:opacity-60 transition-opacity cursor-pointer relative ${
+      className={`flex flex-col md:flex-row border-b p-2 md:p-5 md:space-x-5 hover:opacity-60 transition-opacity cursor-pointer relative ${
         darkMode
           ? "bg-primary border-bgDark text-bgLight"
           : "bg-white text-grey"
@@ -35,17 +35,17 @@ const ArticleCard = ({ item = {} }) => {
       {imageUrl && (
         <img
           src={IMAGE_SOURCE + imageUrl}
-          className="h-24 w-[200px] rounded-md object-cover"
+          className="h-24 md:w-[200px] rounded-md object-cover"
           onLoad={() => setImageLoaded(true)}
         />
       )}
       {!imageLoaded && imageUrl && (
         <Skeleton css="flex w-40 h-24 rounded-md absolute left-0" />
       )}
-      <div className="flex flex-col space-y-2 w-full">
-        <span className="text-xl font-bold">{headline.main}</span>
-        <span className="text-sm">{renderHTML(snippet)}</span>
-        <div className="flex space-x-10 text-xs font-thin">
+      <div className="flex flex-col space-y-1 md:space-y-2 w-full">
+        <span className="text-lg md:text-xl font-bold">{headline.main}</span>
+        <span className="text-xs md:text-sm">{renderHTML(snippet)}</span>
+        <div className="flex space-x-5 md:space-x-10 text-[10px] md:text-xs font-thin">
           <span>
             {t("publisher")}
             {source}
