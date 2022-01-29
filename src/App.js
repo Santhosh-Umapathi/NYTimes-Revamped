@@ -1,5 +1,7 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { RecoilRoot } from "recoil";
+import { ToastContainer } from "react-toastify";
+
 //Layout
 import Layout from "./layout";
 //Pages
@@ -15,8 +17,10 @@ function App() {
           <Route path="/" element={<Splash />} />
           <Route path="/home" element={<Home />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="*" element={<Navigate to="/home" />} />
         </Routes>
       </Layout>
+      <ToastContainer />
     </RecoilRoot>
   );
 }

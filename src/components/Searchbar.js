@@ -1,4 +1,5 @@
 import { useEffect, useCallback, memo } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 //API
 import axios from "axios";
@@ -16,6 +17,7 @@ const Searchbar = ({ setIsLoading = () => {}, page = 0 }) => {
     actions: { setArticles, setSearchText },
   } = useAtoms();
   const { t } = useTranslation();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const darkMode = theme === "dark";
 
@@ -40,8 +42,15 @@ const Searchbar = ({ setIsLoading = () => {}, page = 0 }) => {
     [page]
   );
 
+  const onChangeHandler = (e, val) => {
+    const value = e?.target?.value ?? val;
+    setSearchText(value);
+    setSearchParams({ query: value, page: 0 });
+  };
+
   const clearSearch = useCallback(() => {
     setSearchText("");
+    setSearchParams({ query: "trending", page: 0 });
     getArticles();
   }, []);
 
@@ -64,7 +73,7 @@ const Searchbar = ({ setIsLoading = () => {}, page = 0 }) => {
         }`}
         placeholder={t("search")}
         value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
+        onChange={onChangeHandler}
       />
 
       <Search darkMode={darkMode} animate={searchText.length > 0} />
@@ -75,7 +84,7 @@ const Searchbar = ({ setIsLoading = () => {}, page = 0 }) => {
         animate={!searchText.length > 0}
       />
 
-      <TrendingBar darkMode={darkMode} setSearchText={setSearchText} />
+      <TrendingBar darkMode={darkMode} setSearchText={onChangeHandler} />
     </div>
   );
 };

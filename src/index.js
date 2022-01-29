@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 //CSS
 import "./index.css";
 import "react-perfect-scrollbar/dist/css/styles.css";
+import "react-toastify/dist/ReactToastify.css";
 
 //Main
 import App from "./App";

@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 //API
 import { api } from "../api";
@@ -13,45 +14,73 @@ import { NextIcon, BackIcon } from "../components/icons";
 //Recoil
 import { useAtoms } from "../recoil/hooks";
 const Home = () => {
+  const {
+    state: { theme, articles, searchText },
+    actions,
+  } = useAtoms();
   const { t } = useTranslation();
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const navigate = useNavigate();
+  //Updating Page Value
+  let page =
+    +searchParams.get("page") <= 0 || isNaN(+searchParams.get("page"))
+      ? 0
+      : +searchParams.get("page");
+  //Updating Query Value
+  let query =
+    searchText !== ""
+      ? searchText
+      : searchParams.get("query")
+      ? searchParams.get("query")
+      : "trending";
 
-  const page = +searchParams.get("page") <= 0 ? 0 : +searchParams.get("page");
-  const query = searchParams.get("query") ?? "trending";
-  // console.log("🚀 --- Home --- page", page);
-  // console.log("🚀 --- Home --- query", query);
+  //Updating URL Queries
+  useEffect(() => {
+    //Query Validation
+    if (!searchParams.get("query"))
+      setSearchParams({ query: "trending", page: 0 });
 
-  const {
-    state: { theme, articles }, //page
-    actions,
-  } = useAtoms();
+    //Page Validation
+    if (
+      !searchParams.get("page") ||
+      isNaN(+searchParams.get("page")) ||
+      +searchParams.get("page") < 0
+    )
+      setSearchParams({ query, page: 0 });
+  }, []);
 
   const [isLoading, setIsLoading] = useState(false);
 
   const darkMode = theme === "dark";
 
-  const getArticles = useCallback(
-    async (query = "trending") => {
-      setIsLoading(true);
-      try {
-        const results = await api({
-          query,
-          page,
-          fields: "snippet,source,pub_date,_id,word_count,headline,multimedia",
-        });
+  const getArticles = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const results = await api({
+        query,
+        page,
+        fields: "snippet,source,pub_date,_id,word_count,headline,multimedia",
+      });
 
-        actions.setArticles(results.response.docs);
-      } catch (error) {
-        console.log("🚀 --- getArticles --- error", error);
-      } finally {
-        setTimeout(() => setIsLoading(false), 1000);
-      }
-    },
-    [page]
-  );
+      actions.setArticles(results.response.docs);
+    } catch (error) {
+      toast.error(t("error"), {
+        position: "bottom-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        pauseOnFocusLoss: false,
+        draggable: false,
+        progress: undefined,
+        theme: darkMode ? "dark" : "light",
+        style: { background: darkMode && "#0D1116" },
+      });
+    } finally {
+      setTimeout(() => setIsLoading(false), 1000);
+    }
+  }, [page]);
 
   useEffect(() => {
     getArticles();
@@ -63,7 +92,7 @@ const Home = () => {
 
       <div className="flex flex-col w-full px-20 space-y-3">
         <span className={`text-2xl ${darkMode ? "text-bgLight" : "text-grey"}`}>
-          {t("latest")}
+          {searchText.length > 0 ? t("results") : t("latest")}
         </span>
         <hr
           className={`w-8 border-2  rounded-sm ${
@@ -76,39 +105,49 @@ const Home = () => {
               darkMode ? "bg-primary" : "bg-white"
             }  shadow-md rounded-md h-96`}
           >
-            {isLoading
-              ? Array(5)
-                  .fill("")
-                  .map((item, ind) => (
-                    <ArticleCardSkeleton
-                      key={ind.toString()}
-                      darkMode={darkMode}
-                    />
-                  ))
-              : articles.map((item) => (
-                  <ArticleCard item={item} key={item._id} />
-                ))}
+            {isLoading ? (
+              Array(5)
+                .fill("")
+                .map((_, ind) => (
+                  <ArticleCardSkeleton
+                    key={ind.toString()}
+                    darkMode={darkMode}
+                  />
+                ))
+            ) : !articles.length > 0 ? (
+              <span
+                className={`p-5 text-xl ${
+                  darkMode ? "text-bgLight" : "text-grey"
+                }`}
+              >
+                {t("notFound")}
+              </span>
+            ) : (
+              articles.map((item) => <ArticleCard item={item} key={item._id} />)
+            )}
           </div>
         </PerfectScrollbar>
 
-        <div className="flex w-full flex-row justify-end space-x-5 items-center">
-          <BackIcon
-            onClick={() =>
-              !page <= 0 && setSearchParams({ query: "jack", page: page - 1 })
-            }
-            disabled={page <= 0}
-            darkMode={darkMode}
-          />
-          <span
-            className={`text-lg ${darkMode ? "text-bgLight" : "text-grey"}`}
-          >
-            {page + 1}
-          </span>
-          <NextIcon
-            onClick={() => setSearchParams({ query: "jack", page: page + 1 })}
-            darkMode={darkMode}
-          />
-        </div>
+        {articles.length > 0 && (
+          <div className="flex w-full flex-row justify-end space-x-5 items-center">
+            <BackIcon
+              onClick={() =>
+                !page <= 0 && setSearchParams({ query, page: page - 1 })
+              }
+              disabled={page <= 0}
+              darkMode={darkMode}
+            />
+            <span
+              className={`text-lg ${darkMode ? "text-bgLight" : "text-grey"}`}
+            >
+              {page + 1}
+            </span>
+            <NextIcon
+              onClick={() => setSearchParams({ query, page: page + 1 })}
+              darkMode={darkMode}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

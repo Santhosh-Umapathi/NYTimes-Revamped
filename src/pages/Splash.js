@@ -13,29 +13,27 @@ const Splash = () => {
     state: { theme },
   } = useAtoms();
 
+  const darkMode = theme === "dark";
+
   // Show Splash Screen- Fist time only
   useEffect(() => {
     const isSplashLoaded = localStorage.getItem("splash");
     isSplashLoaded === "yes" && navigate(BASE_ROUTE);
     localStorage.setItem("splash", "yes");
-    setTimeout(() => {
-      navigate(BASE_ROUTE);
-    }, 2000);
+    setTimeout(() => navigate(BASE_ROUTE), 2000);
   }, []);
 
   return (
     <div
       className={`flex justify-center items-center w-screen h-screen ${
-        theme === "dark" ? "bg-bgDark" : "bg-bgLight"
+        darkMode ? "bg-bgDark" : "bg-bgLight"
       } `}
     >
       <Logo
         css={`w-[500px] animate-pulse ${
-          theme === "dark" ? "fill-bgLight" : "fill-grey"
+          darkMode ? "fill-bgLight" : "fill-grey"
         }  `}
-        cssText={`animate-pulse ${
-          theme === "dark" ? "text-bgLight" : "text-grey"
-        }`}
+        cssText={`animate-pulse ${darkMode ? "text-bgLight" : "text-grey"}`}
       />
     </div>
   );

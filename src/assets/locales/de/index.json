@@ -5,5 +5,7 @@
   "read": "Minute lesen",
   "readMore": "Weiterlesen",
   "trending": "Im Trend",
-  "results": "Suchergebnisse"
+  "results": "Suchergebnisse",
+  "error": "Irgendetwas ist nicht gut gelaufen!",
+  "notFound": "Hier unten ist es ruhig, versuchen Sie es erneut."
 }

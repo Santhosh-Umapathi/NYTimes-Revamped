@@ -2,6 +2,8 @@ import { memo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 //Components
 import { Logo, Language, ThemeBulb } from "../components";
+//Constants
+import { BASE_ROUTE } from "../constants";
 
 const Navbar = () => {
   const { pathname } = useLocation();
@@ -18,7 +20,7 @@ const Navbar = () => {
         css="w-[150px] fill-bgLight"
         cssText="text-sm"
         cssContainer="cursor-pointer hover:opacity-70 transition-opacity"
-        onClick={() => navigate("/home")}
+        onClick={() => navigate(BASE_ROUTE)}
       />
 
       <div className="flex items-center justify-center space-x-10">

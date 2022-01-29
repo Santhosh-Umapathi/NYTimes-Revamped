@@ -16,7 +16,7 @@ const TrendingBar = ({ darkMode = false, setSearchText = () => {} }) => {
       {TRENDING.map((item) => (
         <span
           className="cursor-pointer hover:opacity-70 transition-opacity"
-          onClick={() => setSearchText(item)}
+          onClick={() => setSearchText(null, item)}
           key={item}
         >
           #{item}
