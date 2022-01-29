@@ -21,7 +21,7 @@ const Language = () => {
   );
 
   return (
-    <div className="flex space-x-2 text-bgLight">
+    <div className="flex space-x-2 text-bgLight select-none">
       {LanguageComponent("en")}
       <span>|</span>
       {LanguageComponent("de")}

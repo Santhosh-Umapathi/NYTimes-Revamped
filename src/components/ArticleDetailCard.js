@@ -67,7 +67,7 @@ const ArticleDetailCard = ({ item = {} }) => {
           <span>{new Date(pub_date).toDateString()}</span>
         </div>
         <span className="text-xl mb-5">{renderHTML(snippet)}</span>
-        <div className="flex">
+        <div className="flex select-none">
           <a
             href={web_url}
             target="_blank"

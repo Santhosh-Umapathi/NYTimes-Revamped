@@ -6,7 +6,10 @@ const Logo = ({
   cssContainer = "",
   onClick = () => {},
 }) => (
-  <div className={`${cssContainer} cursor-pointer`} onClick={onClick}>
+  <div
+    className={`${cssContainer} cursor-pointer select-none`}
+    onClick={onClick}
+  >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 185 25"

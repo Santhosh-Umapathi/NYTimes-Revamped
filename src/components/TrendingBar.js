@@ -17,7 +17,7 @@ const TrendingBar = ({ setSearchText = () => {} }) => {
         darkMode ? "text-bgLight" : "text-grey"
       }`}
     >
-      <span className="font-semibold">{t("trending")}: </span>
+      <span className="font-semibold select-none">{t("trending")}: </span>
       {TRENDING.map((item) => (
         <span
           className="cursor-pointer hover:opacity-70 transition-opacity"

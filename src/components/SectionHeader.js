@@ -11,7 +11,11 @@ const SectionHeader = ({ isSearching = false }) => {
 
   return (
     <>
-      <span className={`text-2xl ${darkMode ? "text-bgLight" : "text-grey"}`}>
+      <span
+        className={`text-2xl select-none ${
+          darkMode ? "text-bgLight" : "text-grey"
+        }`}
+      >
         {isSearching ? t("results") : t("latest")}
       </span>
       <hr
