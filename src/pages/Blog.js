@@ -1,48 +1,40 @@
 import { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router-dom";
-import { toast } from "react-toastify";
-
+import { useSearchParams } from "react-router-dom";
+//API
 import { api } from "../api";
+//Components
 import { ArticleDetailCard, ArticleDetailSkeleton } from "../components";
+//Constants
+import { FILTER_FIELDS } from "../constants";
+//Helpers
+import { ErrorToast } from "../helpers";
+//Recoil
 import { useAtoms } from "../recoil/hooks";
 
 const Blog = () => {
-  const location = useLocation();
-  const [isLoading, setIsLoading] = useState(true);
-
   const { state, actions } = useAtoms();
   const { t } = useTranslation();
+  const [searchParams] = useSearchParams();
+  const [isLoading, setIsLoading] = useState(true);
 
-  const id = location.search.split("?id=").pop(); //Extracting id from the query
+  const id = searchParams.get("id");
   const darkMode = state.theme === "dark";
 
   const getArticle = useCallback(async () => {
     try {
       const results = await api({
         filterQuery: `_id:"${id}"`,
-        fields:
-          "snippet,source,pub_date,_id,word_count,headline,multimedia,web_url",
+        fields: FILTER_FIELDS + ",web_url",
       });
 
       actions.setArticle(results.response.docs[0]);
     } catch (error) {
-      toast.error(t("error"), {
-        position: "bottom-center",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        pauseOnFocusLoss: false,
-        draggable: false,
-        progress: undefined,
-        theme: darkMode ? "dark" : "light",
-        style: { background: darkMode && "#0D1116" },
-      });
+      ErrorToast({ message: t("error"), darkMode });
     } finally {
       setTimeout(() => setIsLoading(false), 1000);
     }
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     getArticle();

@@ -1,9 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
-import { toast } from "react-toastify";
 import PerfectScrollbar from "react-perfect-scrollbar";
-
 //API
 import { api } from "../api";
 //Components
@@ -16,6 +14,10 @@ import {
 } from "../components";
 //Recoil
 import { useAtoms } from "../recoil/hooks";
+//Constants
+import { FILTER_FIELDS } from "../constants";
+//Helpers
+import { ErrorToast } from "../helpers";
 
 const Home = () => {
   const {
@@ -62,23 +64,12 @@ const Home = () => {
       const results = await api({
         query,
         page,
-        fields: "snippet,source,pub_date,_id,word_count,headline,multimedia",
+        fields: FILTER_FIELDS,
       });
 
       actions.setArticles(results.response.docs);
     } catch (error) {
-      toast.error(t("error"), {
-        position: "bottom-center",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        pauseOnFocusLoss: false,
-        draggable: false,
-        progress: undefined,
-        theme: darkMode ? "dark" : "light",
-        style: { background: darkMode && "#0D1116" },
-      });
+      ErrorToast({ message: t("error"), darkMode });
     } finally {
       setTimeout(() => setIsLoading(false), 1000);
     }

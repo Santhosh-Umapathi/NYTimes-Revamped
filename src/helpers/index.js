@@ -1,4 +1,5 @@
 import { createElement } from "react";
+import { toast } from "react-toastify";
 
 export const getInitialTheme = () => {
   if (typeof window !== "undefined" && window.localStorage) {
@@ -24,3 +25,18 @@ export const renderHTML = (escapedHTML) =>
 
 //Calculate read time of the article
 export const readTime = (word_count) => Math.ceil(+word_count / 225) + 1;
+
+//Error Toast
+export const ErrorToast = ({ message = "", darkMode = false }) =>
+  toast.error(message, {
+    position: "bottom-center",
+    autoClose: 3000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    pauseOnFocusLoss: false,
+    draggable: false,
+    progress: undefined,
+    theme: darkMode ? "dark" : "light",
+    style: { background: darkMode && "#0D1116" },
+  });

@@ -5,3 +5,6 @@ export const BASE_URL =
   "https://api.nytimes.com/svc/search/v2/articlesearch.json";
 //Route
 export const BASE_ROUTE = "/home?query=trending&page=0";
+
+export const FILTER_FIELDS =
+  "snippet,source,pub_date,_id,word_count,headline,multimedia";

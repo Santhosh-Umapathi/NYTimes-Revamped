@@ -1,8 +1,6 @@
 import { useEffect, useCallback, memo } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { toast } from "react-toastify";
-
 //API
 import axios from "axios";
 import { api } from "../api";
@@ -12,6 +10,10 @@ import { useAtoms } from "../recoil/hooks";
 import { Close, Search } from "./icons";
 //Components
 import { TrendingBar } from ".";
+//Helpers
+import { ErrorToast } from "../helpers";
+//Constants
+import { FILTER_FIELDS } from "../constants";
 
 const Searchbar = ({ setIsLoading = () => {}, page = 0 }) => {
   const {
@@ -19,7 +21,7 @@ const Searchbar = ({ setIsLoading = () => {}, page = 0 }) => {
     actions: { setArticles, setSearchText },
   } = useAtoms();
   const { t } = useTranslation();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [_, setSearchParams] = useSearchParams();
 
   const darkMode = theme === "dark";
 
@@ -30,24 +32,13 @@ const Searchbar = ({ setIsLoading = () => {}, page = 0 }) => {
         const results = await api({
           query,
           page,
-          fields: "snippet,source,pub_date,_id,word_count,headline,multimedia",
+          fields: FILTER_FIELDS,
           cancelToken: ct?.token,
         });
 
         setArticles(results.response.docs);
       } catch (error) {
-        toast.error(t("error"), {
-          position: "bottom-center",
-          autoClose: 3000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          pauseOnFocusLoss: false,
-          draggable: false,
-          progress: undefined,
-          theme: darkMode ? "dark" : "light",
-          style: { background: darkMode && "#0D1116" },
-        });
+        ErrorToast({ message: t("error"), darkMode });
       } finally {
         setTimeout(() => setIsLoading(false), 1000);
       }
