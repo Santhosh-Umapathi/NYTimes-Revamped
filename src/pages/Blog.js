@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 //API
 import { api } from "../api";
 //Constants
-import { FILTER_FIELDS } from "../constants";
+import { ERROR_IGNORE_LIST, FILTER_FIELDS } from "../constants";
 //Helpers
 import { ErrorToast } from "../helpers";
 //Recoil
@@ -39,7 +39,8 @@ const Blog = () => {
 
       actions.setArticle(results.response.docs[0]);
     } catch (error) {
-      ErrorToast({ message: t("error"), darkMode });
+      !ERROR_IGNORE_LIST.includes(error.message) &&
+        ErrorToast({ message: t("error"), darkMode });
     } finally {
       setTimeout(() => setIsLoading(false), 1000);
     }

@@ -13,7 +13,7 @@ import { TrendingBar } from "..";
 //Helpers
 import { ErrorToast } from "../../helpers";
 //Constants
-import { FILTER_FIELDS } from "../../constants";
+import { ERROR_IGNORE_LIST, FILTER_FIELDS } from "../../constants";
 
 const Searchbar = ({ setIsLoading = () => {}, page = 0 }) => {
   const {
@@ -37,7 +37,8 @@ const Searchbar = ({ setIsLoading = () => {}, page = 0 }) => {
 
         setArticles(results.response.docs);
       } catch (error) {
-        ErrorToast({ message: t("error"), darkMode });
+        !ERROR_IGNORE_LIST.includes(error.message) &&
+          ErrorToast({ message: t("error"), darkMode });
       } finally {
         setTimeout(() => setIsLoading(false), 1000);
       }
