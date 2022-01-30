@@ -1,4 +1,4 @@
-![image](https://raw.githubusercontent.com/Santhosh-Umapathi/React-NYTimes-Revamped/master/src/assets/images/cover.png)
+![image](https://raw.githubusercontent.com/Santhosh-Umapathi/React-NYTimes-Revamped/project-assets/src/assets/images/cover.png)
 
 _NY Times Revamped, a project made with React & Tailwind CSS_
 
@@ -20,7 +20,7 @@ yarn install && yarn start
 
 ## Live Demo
 
-[NY Times Revamped](https://recoiljs.org/)
+[NY Times Revamped](https://santhosh-umapathi.github.io/React-NYTimes-Revamped/)
 
 ## Running the Project
 
@@ -67,9 +67,9 @@ yarn install && yarn start
 
 ## Project Screenshots
 
-- [Mobile](https://postimg.cc/gallery/7YQ7s8X)
-- [Tablet](https://postimg.cc/gallery/7YQ7s8X)
-- [Desktop](https://postimg.cc/gallery/7YQ7s8X)
+- [Mobile](https://raw.githubusercontent.com/Santhosh-Umapathi/React-NYTimes-Revamped/project-assets/src/assets/images/screenshots/Mobile.png)
+- [Tablet](https://raw.githubusercontent.com/Santhosh-Umapathi/React-NYTimes-Revamped/project-assets/src/assets/images/screenshots/Tablet.png)
+- [Desktop](https://raw.githubusercontent.com/Santhosh-Umapathi/React-NYTimes-Revamped/project-assets/src/assets/images/screenshots/Desktop.png)
 
 ## License
 
