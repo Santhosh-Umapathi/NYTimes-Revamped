@@ -14,16 +14,16 @@ const Navbar = () => {
       className={`${
         pathname === "/" ? "hidden" : "flex"
       } w-full h-16 sticky top-0
-      items-center justify-between bg-primary px-10 z-50 mb-5`}
+      items-center justify-between bg-primary px-2 md:px-10 z-50 mb-5`}
     >
       <Logo
-        css="w-[150px] fill-bgLight"
+        css="w-[150px] fill-bgLight "
         cssText="text-sm"
         cssContainer="cursor-pointer hover:opacity-70 transition-opacity"
         onClick={() => navigate(BASE_ROUTE)}
       />
 
-      <div className="flex items-center justify-center space-x-10">
+      <div className="flex items-center justify-center space-x-3 md:space-x-10">
         <ThemeBulb />
         <Language />
       </div>

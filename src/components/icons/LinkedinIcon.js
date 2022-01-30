@@ -5,7 +5,7 @@ const LinkedinIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    className={`w-5 h-5 hover:opacity-70 transition-opacity cursor-pointer fill-linkedIn`}
+    className={`w-4 h-4 md:w-5 md:h-5 hover:opacity-70 transition-opacity cursor-pointer fill-linkedIn`}
     onClick={() => window.open(LINKEDIN_URL)}
   >
     <path

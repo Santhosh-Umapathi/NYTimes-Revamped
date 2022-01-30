@@ -2,9 +2,7 @@ const LightOff = ({ css = "", onClick = () => {} }) => (
   <svg
     viewBox="0 0 50 60"
     xmlns="http://www.w3.org/2000/svg"
-    height={30}
-    width={30}
-    className={`fill-bgLight hover:opacity-70 transition-opacity cursor-pointer ${css}`}
+    className={`w-5 h-5 md:w-8 md:h-8 fill-bgLight hover:opacity-70 transition-opacity cursor-pointer ${css}`}
     onClick={onClick}
   >
     <g fillRule="nonzero">

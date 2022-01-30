@@ -3,7 +3,7 @@ import { memo } from "react";
 import { Skeleton } from "..";
 
 const ArticleDetailSkeleton = () => (
-  <div className="flex flex-col px-5 space-y-5 w-full">
+  <div className="flex flex-col px-2 md:px-5 space-y-2 md:space-y-5 w-full">
     <Skeleton
       css="flex w-7 h-7"
       circle

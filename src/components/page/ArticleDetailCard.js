@@ -34,18 +34,18 @@ const ArticleDetailCard = ({ item = {} }) => {
   const imageUrl = multimedia[9]?.url;
 
   return (
-    <div className="flex flex-col px-5 space-y-5 w-full relative">
+    <div className="flex flex-col mx-2 md:px-5 space-y-3 md:space-y-5 w-full relative">
       <LeftArrow onClick={() => navigate(-1)} />
       {imageUrl && (
         <img
           src={IMAGE_SOURCE + imageUrl}
-          className="rounded-md object-cover w-full h-[200px] md:h-[300px]"
+          className="rounded-md object-cover w-full h-[200px] md:h-[300px] "
           onLoad={() => setImageLoaded(true)}
         />
       )}
       {!imageLoaded && imageUrl && (
         <Skeleton
-          css="flex w-full h-[300px] rounded-md absolute top-8"
+          css="flex w-full h-[200px] md:h-[300px] rounded-md absolute top-8 right-0 md:px-5"
           baseColor="#24292F"
           highlightColor="#0D1116"
         />

@@ -3,7 +3,7 @@ const Copyright = () => (
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 512 512"
     xmlSpace="preserve"
-    className={`w-4 h-4 fill-bgLight`}
+    className={`w-3 h-3 md:w-4 md:h-4 fill-bgLight`}
   >
     <path
       xmlns="http://www.w3.org/2000/svg"
