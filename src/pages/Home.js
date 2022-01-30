@@ -12,9 +12,9 @@ import { ERROR_IGNORE_LIST, FILTER_FIELDS } from "../constants";
 import { ErrorToast } from "../helpers";
 //Components
 import { Skeleton } from "../components";
+import ArticleCard from "../components/page/ArticleCard";
 
 //Components - Lazy Loading
-const ArticleCard = lazy(() => import("../components/page/ArticleCard"));
 const ArticleCardSkeleton = lazy(() =>
   import("../components/page/ArticleCardSkeleton")
 );
@@ -85,12 +85,12 @@ const Home = () => {
 
   return (
     <div className="flex flex-col items-center w-full h-full space-y-10 md:space-y-10 mx-2 md:mx-0">
-      <Suspense fallback={<Skeleton css="w-40 h-20" />}>
+      <Suspense fallback={<Skeleton css="w-full md:w-1/2 h-12 flex" />}>
         <Searchbar setIsLoading={setIsLoading} page={page} />
       </Suspense>
 
       <div className="flex flex-col w-full md:px-20 space-y-5 md:space-y-3 ">
-        <Suspense fallback={<Skeleton css="w-40 h-20" />}>
+        <Suspense fallback={<Skeleton css="flex w-1/3 h-10" />}>
           <SectionHeader isSearching={searchText.length > 0} />
         </Suspense>
         <PerfectScrollbar
@@ -109,7 +109,7 @@ const Home = () => {
                   .fill("")
                   .map((_, ind) => (
                     <Suspense
-                      fallback={<Skeleton css="w-40 h-20" />}
+                      fallback={<Skeleton css="flex w-full h-12" />}
                       key={ind.toString()}
                     >
                       <ArticleCardSkeleton />
@@ -125,20 +125,19 @@ const Home = () => {
                 {t("notFound")}
               </span>
             ) : (
-              articles.map((item) => (
-                <Suspense
-                  fallback={<Skeleton css="w-40 h-20" />}
-                  key={item._id}
-                >
-                  <ArticleCard item={item} />
-                </Suspense>
-              ))
+              articles.map((item) => <ArticleCard item={item} key={item._id} />)
             )}
           </div>
         </PerfectScrollbar>
 
         {articles.length > 0 && (
-          <Suspense fallback={<Skeleton css="w-40 h-20" />}>
+          <Suspense
+            fallback={
+              <div className="flex w-full justify-end">
+                <Skeleton css="flex w-1/5 h-6 justify-end" />
+              </div>
+            }
+          >
             <Pagination page={page} query={query} />
           </Suspense>
         )}

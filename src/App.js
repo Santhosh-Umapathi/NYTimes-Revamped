@@ -16,7 +16,7 @@ const Blog = lazy(() => import("./pages/Blog"));
 const App = () => (
   <RecoilRoot>
     <Layout>
-      <Suspense fallback={<Skeleton css="w-40 h-20" />}>
+      <Suspense fallback={<Skeleton css="flex w-full h-screen" />}>
         <Routes>
           <Route path="/" element={<Splash />} />
           <Route path="/home" element={<Home />} />
