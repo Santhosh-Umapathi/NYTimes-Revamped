@@ -20,7 +20,7 @@ yarn install && yarn start
 
 ## Live Demo
 
-[NY Times Revamped](https://santhosh-umapathi.github.io/React-NYTimes-Revamped/)
+[NY Times Revamped](https://nytimes-revamped.web.app/)
 
 ## Running the Project
 
