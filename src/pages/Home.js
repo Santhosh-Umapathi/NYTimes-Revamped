@@ -107,8 +107,11 @@ const Home = () => {
                 {Array(3)
                   .fill("")
                   .map((_, ind) => (
-                    <Suspense fallback={<Skeleton css="w-40 h-20" />}>
-                      <ArticleCardSkeleton key={ind.toString()} />
+                    <Suspense
+                      fallback={<Skeleton css="w-40 h-20" />}
+                      key={ind.toString()}
+                    >
+                      <ArticleCardSkeleton />
                     </Suspense>
                   ))}
               </div>
@@ -122,8 +125,11 @@ const Home = () => {
               </span>
             ) : (
               articles.map((item) => (
-                <Suspense fallback={<Skeleton css="w-40 h-20" />}>
-                  <ArticleCard item={item} key={item._id} />
+                <Suspense
+                  fallback={<Skeleton css="w-40 h-20" />}
+                  key={item._id}
+                >
+                  <ArticleCard item={item} />
                 </Suspense>
               ))
             )}
