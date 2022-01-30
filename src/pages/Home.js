@@ -83,7 +83,7 @@ const Home = () => {
   }, [getArticles]);
 
   return (
-    <div className="flex flex-col items-center w-full h-full space-y-10 md:space-y-3 mx-2 md:mx-0">
+    <div className="flex flex-col items-center w-full h-full space-y-10 md:space-y-10 mx-2 md:mx-0">
       <Suspense fallback={<Skeleton css="w-40 h-20" />}>
         <Searchbar setIsLoading={setIsLoading} page={page} />
       </Suspense>

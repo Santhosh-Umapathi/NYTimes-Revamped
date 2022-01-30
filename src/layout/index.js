@@ -15,9 +15,9 @@ const Layout = ({ children }) => {
 
   return (
     <div
-      className={`flex w-full flex-col ${
+      className={`flex w-full min-h-screen flex-col ${
         darkMode ? "bg-bgDark" : "bg-bgLight"
-      } transition-all`} //todo remove colors later
+      } transition-all`}
     >
       <Navbar />
       <div className="flex mb-20">{children}</div>

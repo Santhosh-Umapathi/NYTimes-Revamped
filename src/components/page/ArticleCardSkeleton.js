@@ -21,9 +21,9 @@ const ArticleCardSkeleton = () => {
         <Skeleton css="flex md:w-1/2 h-12" />
 
         <div className="flex space-x-10">
-          <Skeleton css="flex w-28 h-2" />
-          <Skeleton css="flex w-28 h-2" />
-          <Skeleton css="flex w-28 h-2" />
+          <Skeleton css="flex w-20 md:w-28 h-2" />
+          <Skeleton css="flex w-20 md:w-28 h-2" />
+          <Skeleton css="flex w-20 md:w-28 h-2" />
         </div>
       </div>
     </div>
