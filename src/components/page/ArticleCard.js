@@ -40,7 +40,7 @@ const ArticleCard = ({ item = {} }) => {
         />
       )}
       {!imageLoaded && imageUrl && (
-        <Skeleton css="flex w-full md:w-40 h-24 rounded-md absolute left-0" />
+        <Skeleton css="flex w-full px-2 md:px-0 md:w-44 h-24 rounded-md absolute left-0" />
       )}
       <div className="flex flex-col space-y-1 md:space-y-2 w-full">
         <span className="text-lg md:text-xl font-bold">{headline.main}</span>

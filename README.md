@@ -36,6 +36,7 @@ yarn install && yarn start
 - Responsive Layout
 - Animations
 - Search as you Type
+- URL query,page based searches
 - Skeleton Placeholders
 
 ## Packages
@@ -70,6 +71,10 @@ yarn install && yarn start
 - [Mobile](https://raw.githubusercontent.com/Santhosh-Umapathi/React-NYTimes-Revamped/project-assets/src/assets/images/screenshots/Mobile.png)
 - [Tablet](https://raw.githubusercontent.com/Santhosh-Umapathi/React-NYTimes-Revamped/project-assets/src/assets/images/screenshots/Tablet.png)
 - [Desktop](https://raw.githubusercontent.com/Santhosh-Umapathi/React-NYTimes-Revamped/project-assets/src/assets/images/screenshots/Desktop.png)
+
+## Github Source
+
+[Git Repository](https://github.com/Santhosh-Umapathi/NYTimes-Revamped)
 
 ## License
 

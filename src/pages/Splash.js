@@ -14,11 +14,8 @@ const Splash = () => {
     state: { darkMode },
   } = useAtoms();
 
-  // Show Splash Screen- Fist time only
+  // Show Splash Screen - On Initial load
   useEffect(() => {
-    const isSplashLoaded = localStorage.getItem("splash");
-    isSplashLoaded === "yes" && navigate(BASE_ROUTE);
-    localStorage.setItem("splash", "yes");
     setTimeout(() => navigate(BASE_ROUTE), 2000);
   }, []);
 
@@ -29,10 +26,10 @@ const Splash = () => {
       } `}
     >
       <Logo
-        css={`animate-pulse w-[500px] ${
+        css={`animate-pulse w-[300px] md:w-[500px] ${
           darkMode ? "fill-bgLight" : "fill-grey"
         }`}
-        cssText={`text-xl animate-pulse ${
+        cssText={`text-lg text-xl animate-pulse ${
           darkMode ? "text-bgLight" : "text-grey"
         }`}
       />
